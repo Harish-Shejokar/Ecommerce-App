@@ -1,0 +1,12 @@
+.bg{
+    background-color: gray;
+    color: white;
+    height: 10rem;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+}
+
+.bg h1{
+    font-size: 6rem;
+}
