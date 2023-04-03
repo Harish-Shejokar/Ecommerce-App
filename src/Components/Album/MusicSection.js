@@ -41,17 +41,20 @@ const MusicSection = () => {
         "https://prasadyash2411.github.io/ecom-website/img/Album%204.png",
     },
   ];
-    return (
-      <ListGroup className="lg d-flex flex-row mx-1 mt-5">
-        {productsArr.map((item) => {
+  return (
+    <Container className=" d-flex flex-wrap">
+      <ListGroup className="lg-2  d-flex flex-row  justify-content-center mx-1 mt-5 ">
+        {productsArr.map((item,index) => {
           return (
             <Container>
-                  <Box title={item.title} price={item.price} url={item.imageUrl} />
+              <h4 className="text-center">Album {index+1}</h4>
+              <Box title={item.title} price={item.price} url={item.imageUrl} />
             </Container>
           );
         })}
       </ListGroup>
-    );
+    </Container>
+  );
 };
 
 export default MusicSection;

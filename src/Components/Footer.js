@@ -10,7 +10,7 @@ const Footer = () => {
       <Navbar className="py-3" bg="info" expand="lg" variant="dark">
         <Container>
           <Row>
-            <h1>The Generics</h1>
+            <h1 className="text-white">The Generics</h1>
           </Row>
           <Row>
             <Col>
