@@ -5,33 +5,32 @@ import NavBar from "./Components/NavBar";
 import Footer from "./Components/Footer";
 import MusicSection from "./Components/Album/MusicSection";
 import Cart from "./Components/Cart/Cart";
+import CartProvider from "./Store/CartProvider";
 
 const App = () => {
-  const [cartShown, setCartShown] = useState(true);
-
-  const cartShownHandler = () => {
-    setCartShown(true);
-  }
+ 
 
 
   return (
     <>
-      <NavBar />
-      <main>
-        <Bg />
-        <section>
-          <h2 className="text-center mt-4">Music</h2>
-          <MusicSection />
-        </section>
-      </main>
+      <CartProvider>
+        <NavBar />
+        <main>
+          <Bg />
+          <section>
+            <h2 className="text-center mt-4">Music</h2>
+            <MusicSection />
+          </section>
+        </main>
 
-      <Container className="mb-5 d-flex justify-content-center">
-        <Cart title={'See the Cart'} />
-        {/* <Button onClick={cartShownHandler} className="p-2" variant="secondary">
+        <Container className="mb-5 d-flex justify-content-center">
+          <Cart title={"See the Cart"} />
+          {/* <Button onClick={cartShownHandler} className="p-2" variant="secondary">
           <strong>See the Cart</strong>
         </Button> */}
-      </Container>
-      <Footer />
+        </Container>
+        <Footer />
+      </CartProvider>
     </>
   );
 };

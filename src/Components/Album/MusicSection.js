@@ -48,7 +48,7 @@ const MusicSection = () => {
           return (
             <Container>
               <h4 className="text-center">Album {index+1}</h4>
-              <Box title={item.title} price={item.price} url={item.imageUrl} />
+              <Box data={{...item}} title={item.title} price={item.price} url={item.imageUrl} />
             </Container>
           );
         })}
