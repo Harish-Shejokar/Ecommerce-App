@@ -24,7 +24,7 @@ const Footer = () => {
               </Navbar.Brand>
             </Col>
             <Col>
-              <Navbar.Brand className="mx-2" href="#STORE">
+              <Navbar.Brand className="mx-2 " href="#STORE">
                 <img
                   src={spotify}
                   alt="loading"
