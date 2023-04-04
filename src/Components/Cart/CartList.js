@@ -4,11 +4,12 @@ import ImgBox from "./ImgBox";
 import CartContext from "../../Store/Cart-Context";
 
 const CartList = (props) => {
-    const cartCtx = useContext(CartContext);
-    
-    const removeHandler = () => {
-        
-    }
+  const cartCtx = useContext(CartContext);
+
+  const removeHandler = (e) => {
+    // console.log(e.target.id);
+    cartCtx.removeItemCart(e.target.id);
+  };
 
   return (
     <ListGroup>
@@ -28,6 +29,8 @@ const CartList = (props) => {
                 </Col>
                 <Col>
                   <Button
+                    type="button"
+                    id={item.title}
                     onClick={removeHandler}
                     variant="danger"
                   >
