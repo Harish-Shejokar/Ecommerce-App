@@ -6,13 +6,13 @@ const App = () => {
  
   const router = createBrowserRouter([
     { path: '/' ,element:<HomePage />},
-    {}
+    {path: '/about',element:<About />}
   ])
 
   return (
     <>
       <RouterProvider router={router} />
-      {/* <About /> */}
+      
     </>
   );
 };
