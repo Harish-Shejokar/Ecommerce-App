@@ -3,27 +3,34 @@ import {useLocation,NavLink,Outlet} from 'react-router-dom';
 import { Navbar, Container } from 'react-bootstrap';
 import Cart from './Cart/Cart';
 import Bg from "./Bg";
-import Footer from "../Components/Footer";
+// import Footer from "../Components/Footer";
 
 
 const NavBar = () => {
-  const [store, isStore] = useState(false);
+  const [store, setIsStore] = useState(false);
 
   const location = useLocation();
   useEffect(() => {
     // console.log(store)
     console.log(location)
-    if (location.pathname === '/') {
-      isStore(true);
-    }
+    if (location.pathname === '/') setIsStore(true);
+    else setIsStore(false);
   }, [location]);
   
   return (
     <>
       <Navbar className="sticky-top " bg="black" expand="lg" variant="dark">
         <Container className="d-flex justify-content-center ">
-          <Navbar.Brand className="mx-4" href="#home">
-            HOME
+          <Navbar.Brand className="mx-4">
+            <NavLink
+              to="/home"
+              style={{
+                textDecoration: "none",
+                color: "white",
+              }}
+            >
+              HOME
+            </NavLink>
           </Navbar.Brand>
           <Navbar.Brand className="mx-4">
             <NavLink

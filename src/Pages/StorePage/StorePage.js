@@ -3,9 +3,9 @@ import {  Container } from "react-bootstrap";
 // import Bg from '../Components/Bg';
 // import NavBar from "../Components/NavBar";
 // import Footer from "../Components/Footer";
-import MusicSection from "../Components/Album/MusicSection";
-import Cart from "../Components/Cart/Cart";
-import CartProvider from "../Store/CartProvider";
+import MusicSection from "../../Components/Album/MusicSection";
+import Cart from "../../Components/Cart/Cart";
+import CartProvider from "../../Store/CartProvider";
 
 const Home = () => {
   return (
