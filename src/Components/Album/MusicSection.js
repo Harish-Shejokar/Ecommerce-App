@@ -42,7 +42,7 @@ const MusicSection = () => {
     },
   ];
   return (
-    <Container className=" d-flex flex-wrap">
+    <Container className=" d-flex flex-wrap mb-5">
       <ListGroup className="lg-2  d-flex flex-row  justify-content-center mx-1 mt-5 ">
         {productsArr.map((item,index) => {
           return (
