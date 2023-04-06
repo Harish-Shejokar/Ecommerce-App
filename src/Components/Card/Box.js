@@ -18,7 +18,7 @@ const Box = (props) => {
 
         <div className="d-flex justify-content-between ">
           <div>${props.price}</div>
-          <Button  onClick={buttonHandler} variant="info">
+          <Button type="button" onClick={buttonHandler} variant="info">
             <strong className="mt-2 text-white">ADD TO CART</strong>
           </Button>
         </div>

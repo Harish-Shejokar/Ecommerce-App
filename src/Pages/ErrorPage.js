@@ -9,6 +9,7 @@ const ErrorPage = () => {
         <img
           style={{ height: "100vh", width: "100%" }}
           src="https://internetdevels.com/sites/default/files/public/blog_preview/404_page_cover.jpg"
+          alt='loading'
         />
       </body>
     </div>

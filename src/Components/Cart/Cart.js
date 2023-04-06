@@ -5,7 +5,6 @@ import {
   Col,
   Row,
   Button,
-  Table,
   Badge,
 } from "react-bootstrap";
 import React,{useContext,useState} from "react";
@@ -27,7 +26,7 @@ const Cart = (props) => {
         variant={props.variant}
         onClick={handleShow}
       >
-        {props.title}-<Badge bg="info">{cartCtx.quantity}</Badge>
+        {props.title}<Badge className="ms-2" bg="info">{cartCtx.quantity}</Badge>
       </Button>
 
       <Modal tabindex="-1" show={show} onHide={handleClose} animation={true}>

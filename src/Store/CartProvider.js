@@ -13,17 +13,21 @@ const CartProvider = (props) => {
       prevItem.map((elem) => {
         if (elem.title === item.title) {
           pointer = true;
-          elem.quantity = parseInt(elem.quantity+1);
+          elem.quantity = parseInt(elem.quantity + 1);
         }
+        return [...prevItem]
       });
+     
       if (pointer) return [...prevItem];
       else return [...prevItem, item];
+      
     });
   };
   let amount = 0;
   let quantity = 0;
   const totalAmountHandler = () => {
     cartItem.forEach((item) => {
+      console.log(item)
       amount = parseInt(amount + item.quantity * item.price);
       quantity = parseInt(quantity + item.quantity);
     });
@@ -37,18 +41,18 @@ const CartProvider = (props) => {
 
   const removeItemFromCart = (item) => {
     setCartItem((prevItem) => {
-      prevItem.forEach((elem) => {
-        // console.log(elem)
-        if (elem.title === item && elem.quantity === 1) {
-          // elem.quantity = parseInt(elem.quantity - 1);
+        prevItem.forEach((elem) => {
+        if (elem.quantity === 1 && elem.title === item) {
+          console.log("hi");
           prevItem = prevItem.filter((list) => {
-            //  console.log(list,elem)
             return list !== elem;
           });
+          // return [...prevItem];
         } else if (elem.title === item) {
-          elem.quantity = parseInt(elem.quantity - 1);
+          elem.quantity -= 1;
         }
       });
+
       return [...prevItem];
     });
   };

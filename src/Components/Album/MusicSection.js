@@ -1,7 +1,7 @@
 import React from "react";
 import {  Container, ListGroup } from "react-bootstrap";
 import Box from '../Card/Box';
-import Album1 from '../../assets/Album1.png';
+
 
 const MusicSection = () => {
   const productsArr = [

@@ -7,7 +7,7 @@ const CartList = (props) => {
   const cartCtx = useContext(CartContext);
 
   const removeHandler = (e) => {
-    // console.log(e.target.id);
+    console.log(e.target.id);
     cartCtx.removeItemCart(e.target.id);
   };
 
@@ -36,6 +36,7 @@ const CartList = (props) => {
                   >
                     REMOVE
                   </Button>
+                 
                 </Col>
               </Row>
             </Container>

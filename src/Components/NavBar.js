@@ -1,11 +1,19 @@
-import React from 'react'
-import { Navbar, Container, Button } from 'react-bootstrap';
+import React,{useState,useEffect} from 'react'
+import {useLocation} from 'react-router-dom';
+import { Navbar, Container } from 'react-bootstrap';
 import Cart from './Cart/Cart';
 
+
 const NavBar = () => {
-    const cartHandler = () => {
-        console.log('hey')
-    }
+  const [store, isStore] = useState(false);
+
+  const location = useLocation();
+  useEffect(() => {
+    // console.log(location)
+    // console.log(store)
+    if(location.pathname === '/') isStore(true);
+  }, [location]);
+  
   return (
     <Navbar className="sticky-top " bg="black" expand="lg" variant="dark">
       <Container className="d-flex justify-content-center ">
@@ -19,7 +27,7 @@ const NavBar = () => {
           ABOUT
         </Navbar.Brand>
       </Container>
-      <Cart className="mx-3" title={"CART"} variant="outline-info" />
+      {store && <Cart className="mx-3" title={"CART"} variant="outline-info" />}
     </Navbar>
   );
 }
