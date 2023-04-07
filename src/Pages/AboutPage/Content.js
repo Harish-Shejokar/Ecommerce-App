@@ -5,7 +5,7 @@ const content = () => {
   return (
     <Container>
       <Row>
-        <Col  className="col-3 offset-1">
+        <Col className="col-3 offsets-2 ms-3">
           <Image
             className="img rounded"
             src="https://prasadyash2411.github.io/ecom-website/img/Band%20Members.png"
@@ -15,7 +15,8 @@ const content = () => {
             roundedCircle
           />
         </Col>
-        <Col lg={6} className="col-lg-6">
+        <Col lg={6}  className="ms-4" >
+          
           Lorem ipsum carrots enhanced rebates. Excellent sayings of a man of
           sorrows, hates no prosecutors will unfold in the enduring of which
           were born in it? Often leads smallest mistake some pain main

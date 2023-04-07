@@ -9,7 +9,7 @@ const Bg = () => {
   const [playButton, setPlayButton] = useState(false);
 
   useEffect(() => {
-    console.log(location);
+    // console.log(location);
     if (location.pathname === "/home") setPlayButton(true);
     else setPlayButton(false);
   },[location])

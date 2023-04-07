@@ -1,7 +1,6 @@
 import React from "react";
-import {  Container, ListGroup } from "react-bootstrap";
-import Box from '../Card/Box';
-
+import { Container, Row, Col } from "react-bootstrap";
+import Box from "../Card/Box";
 
 const MusicSection = () => {
   const productsArr = [
@@ -42,17 +41,22 @@ const MusicSection = () => {
     },
   ];
   return (
-    <Container className=" d-flex flex-wrap mb-5">
-      <ListGroup className="lg-2  d-flex flex-row  justify-content-center mx-1 mt-5 ">
-        {productsArr.map((item,index) => {
+    <Container >
+      <Row className="d-flex  justify-content-between mb-5">
+        {productsArr.map((item, index) => {
           return (
-            <Container>
-              <h4 className="text-center">Album {index+1}</h4>
-              <Box data={{...item}} title={item.title} price={item.price} url={item.imageUrl} />
-            </Container>
+            <Col sm={6} className="mb-3 " key={item.title}>
+              <h4 className="text-center">Album {index + 1}</h4>
+              <Box
+                data={{ ...item }}
+                title={item.title}
+                price={item.price}
+                url={item.imageUrl}
+              />
+            </Col>
           );
         })}
-      </ListGroup>
+      </Row>
     </Container>
   );
 };

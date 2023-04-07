@@ -8,7 +8,7 @@ const HomeContent = () => {
         <Row>
           <h1 className="text-center">Tours</h1>
 
-          <ListGroup className="d-flex justify-content-evenly">
+          <ListGroup>
             <ListGroup.Item>
               <Row>
                 <Col className="" sm={3}>
@@ -17,7 +17,9 @@ const HomeContent = () => {
                 <Col sm={3}>DETROIT, MI</Col>
                 <Col sm={3}>DTE ENERGY MUSIC THEATRE</Col>
                 <Col>
-                  <Button variant="info">Info</Button>{" "}
+                  <Button className="px-5" variant="info">
+                    Info
+                  </Button>{" "}
                 </Col>
               </Row>
             </ListGroup.Item>

@@ -11,8 +11,8 @@ const NavBar = () => {
 
   const location = useLocation();
   useEffect(() => {
-    // console.log(store)
-    console.log(location)
+   
+    // console.log(location)
     if (location.pathname === '/') setIsStore(true);
     else setIsStore(false);
   }, [location]);

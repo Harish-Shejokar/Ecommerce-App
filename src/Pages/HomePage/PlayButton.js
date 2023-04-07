@@ -1,5 +1,5 @@
 import React from 'react'
-import { IconName, AiOutlinePlayCircle } from "react-icons/ai";
+import {  AiOutlinePlayCircle } from "react-icons/ai";
 import classes from './PlayButton.module.css'
 
 const PlayButton = () => {
