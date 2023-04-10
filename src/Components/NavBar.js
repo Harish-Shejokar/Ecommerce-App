@@ -34,7 +34,7 @@ const NavBar = () => {
           </Navbar.Brand>
           <Navbar.Brand className="mx-4">
             <NavLink
-              to="/"
+              to="/store"
               style={{
                 textDecoration: "none",
                 color: "white",
@@ -54,6 +54,17 @@ const NavBar = () => {
               ABOUT
             </NavLink>
           </Navbar.Brand>
+          <Navbar.Brand className="mx-4">
+            <NavLink
+              to="/contact"
+              style={({ isActive }) => ({
+                textDecoration: "none",
+                color: "white",
+              })}
+            >
+              CONTACT
+            </NavLink>
+          </Navbar.Brand>
         </Container>
         {store && (
           <Cart className="mx-3" title={"CART"} variant="outline-info" />
@@ -62,7 +73,7 @@ const NavBar = () => {
 
       <main style={{ backgroundColor: "rgb(255,255,255)" }}>
         <Bg />
-        <Outlet />
+       
         {/* <Footer /> */}
       </main>
     </>

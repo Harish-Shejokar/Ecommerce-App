@@ -1,10 +1,8 @@
 import React,{} from "react";
 import {
-  createBrowserRouter,
-  RouterProvider,
-  // Outlet,
-  // createRoutesFromElements,
-  // Route,
+ 
+  Route,
+  
 
 } from 'react-router-dom'
 import StorePage from "./Pages/StorePage/StorePage";
@@ -13,35 +11,31 @@ import ErrorPage from "./Pages/ErrorPage";
 import NavBar from "./Components/NavBar";
 import Footer from "./Components/Footer";
 import HomePage from './Pages/HomePage/HomePage';
+import ContactPage from "./Pages/ContactPage/ContactPage";
 
 const App = () => {
  
 
-  
-
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: (
-        <>
-          <NavBar />
-          <Footer />
-        </>
-      ),
-      errorElement: <ErrorPage />,
-
-      children: [
-        { path: "/", element: <StorePage /> },
-        { path: "/about", element: <About /> },
-        {path : '/home', element : <HomePage/>},
-      ],
-    },
-  ]);
 
   return (
     <>
-      <RouterProvider router={router} />
+      <NavBar />
+      <Route path="/store">
+        <StorePage />
+      </Route>
+      <Route path="/home">
+        <HomePage />
+      </Route>
+      <Route path="/about">
+        <About />
+      </Route>
+      <Route path="/contact">
+        <ContactPage/>
+      </Route>
+
+      {/* <RouterProvider router={router} /> */}
       {/* <Swithch */}
+      <Footer />
     </>
   );
 };
