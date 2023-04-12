@@ -1,8 +1,15 @@
 import React,{useState,useEffect} from 'react'
-import {useLocation,NavLink} from 'react-router-dom';
-import { Navbar, Container } from 'react-bootstrap';
+import {useLocation,NavLink,} from 'react-router-dom';
+import {
+  Navbar,
+  Container,
+  Button,
+  Dropdown,
+  ButtonGroup,
+} from "react-bootstrap";
 import Cart from './Cart/Cart';
 import Bg from "./Bg";
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 // import Footer from "../Components/Footer";
 
 
@@ -70,15 +77,48 @@ const NavBar = () => {
               CONTACT
             </NavLink>
           </Navbar.Brand>
+          <Navbar.Brand className="mx-4">
+            <NavLink
+              to="/product"
+              style={({ isActive }) => ({
+                textDecoration: "none",
+                color: "white",
+              })}
+            >
+              <Dropdown as={ButtonGroup}>
+                <Button variant="success">Product</Button>
+
+                <Dropdown.Toggle
+                  split
+                  variant="success"
+                  id="dropdown-split-basic"
+                />
+
+                <Dropdown.Menu>
+                  <Dropdown.Item>
+                    <Link to="/product?category=electronics&brand=boat">Electronics</Link>
+                  </Dropdown.Item>
+                  <Dropdown.Item>
+                    <Link to="/product?category=mobiles&brand=OnePLus">Mobiles</Link>
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </NavLink>
+          </Navbar.Brand>
         </Container>
         {store && (
-          <Cart className="" title={"CART"} variant="outline-info" navbar="true" />
+          <Cart
+            className=""
+            title={"CART"}
+            variant="outline-info"
+            navbar="true"
+          />
         )}
       </Navbar>
 
       <main style={{ backgroundColor: "rgb(255,255,255)" }}>
         {!isProduct && <Bg />}
-       
+
         {/* <Footer /> */}
       </main>
     </>

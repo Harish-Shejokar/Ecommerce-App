@@ -8,6 +8,7 @@ import Footer from "./Components/Footer";
 import HomePage from "./Pages/HomePage/HomePage";
 import ContactPage from "./Pages/ContactPage/ContactPage";
 import ProductDetailsPage from "./Pages/StorePage/ProductDetail/ProductDetailsPage";
+import Product from "./Pages/Product";
 
 const App = () => {
   return (
@@ -33,13 +34,19 @@ const App = () => {
           <ContactPage />
         </Route>
 
-        <Route path="/productDetails/">
+        <Route path="/productDetails/:productId/">
           <ProductDetailsPage />
+        </Route>
+
+        <Route path="/product">
+          <Product/>
+        </Route>
+
+        <Route path="*">
+          <ErrorPage />
         </Route>
       </Switch>
       <Footer />
-
-      
     </>
   );
 };

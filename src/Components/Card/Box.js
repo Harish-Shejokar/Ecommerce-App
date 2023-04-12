@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Card, Container, Button } from "react-bootstrap";
 import CartContext from "../../Store/Cart-Context";
 // import ProductDetailsPage from "../../Pages/StorePage/ProductDetail/ProductDetailsPage";
 
 const Box = (props) => {
   const crtx = useContext(CartContext);
-
+  
   const buttonHandler = (e) => {
     console.log(Math.random())
     crtx.addItemToCart({ ...props.data, quantity: 1 });
@@ -30,8 +30,8 @@ const Box = (props) => {
         <Card style={{ width: "15rem", border: "none" }}>
           <Link
             to={{
-              pathname: "/productDetails/",
-              state : obj,
+              pathname: `/productDetails/${props.title}`,
+              state: obj,
             }}
           >
             <Card.Img
