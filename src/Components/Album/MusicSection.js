@@ -42,7 +42,7 @@ const MusicSection = () => {
   ];
   return (
     <Container >
-      <Row className="d-flex  justify-content-between mb-5">
+      <Row className="d-flex justify-content-between mb-5">
         {productsArr.map((item, index) => {
           return (
             <Col sm={6} className="mb-3 " key={item.title}>
@@ -57,6 +57,9 @@ const MusicSection = () => {
           );
         })}
       </Row>
+      {/* <Row>
+        hey
+      </Row> */}
     </Container>
   );
 };

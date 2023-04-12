@@ -44,7 +44,7 @@ const Form = () => {
       />
       <label>Phone</label>
       <input ref={phoneRef} type="number" />
-      <button onClick={formHandler}>Add Movie</button>
+      <button onClick={formHandler}>Submit</button>
     </form>
   );
 }

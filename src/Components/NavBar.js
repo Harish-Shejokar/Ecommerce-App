@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react'
-import {useLocation,NavLink,Outlet} from 'react-router-dom';
+import {useLocation,NavLink} from 'react-router-dom';
 import { Navbar, Container } from 'react-bootstrap';
 import Cart from './Cart/Cart';
 import Bg from "./Bg";
@@ -8,18 +8,23 @@ import Bg from "./Bg";
 
 const NavBar = () => {
   const [store, setIsStore] = useState(false);
+  const [isProduct, setIsProduct] = useState(false);
 
   const location = useLocation();
   useEffect(() => {
    
     // console.log(location)
-    if (location.pathname === '/') setIsStore(true);
+    if (location.pathname === '/store') setIsStore(true);
     else setIsStore(false);
+
+    if (location.pathname === '/productDetails/') setIsProduct(true);
+    else setIsProduct(false);
+
   }, [location]);
   
   return (
     <>
-      <Navbar className="sticky-top " bg="black" expand="lg" variant="dark">
+      <Navbar className="sticky-top " bg="black" expand="md" variant="dark">
         <Container className="d-flex justify-content-center ">
           <Navbar.Brand className="mx-4">
             <NavLink
@@ -67,12 +72,12 @@ const NavBar = () => {
           </Navbar.Brand>
         </Container>
         {store && (
-          <Cart className="mx-3" title={"CART"} variant="outline-info" />
+          <Cart className="" title={"CART"} variant="outline-info" navbar="true" />
         )}
       </Navbar>
 
       <main style={{ backgroundColor: "rgb(255,255,255)" }}>
-        <Bg />
+        {!isProduct && <Bg />}
        
         {/* <Footer /> */}
       </main>

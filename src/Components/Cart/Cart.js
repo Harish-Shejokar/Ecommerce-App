@@ -1,67 +1,53 @@
-
-import {
-  Modal,
-  Container,
-  Col,
-  Row,
-  Button,
-  Badge,
-} from "react-bootstrap";
-import React,{useContext,useState} from "react";
+import { Offcanvas, Container, Col, Row, Button, Badge } from "react-bootstrap";
+import React, { useContext, useState } from "react";
 import CartList from "./CartList";
 import CartContext from "../../Store/Cart-Context";
+// import { createContext } from "react";
 
 const Cart = (props) => {
-    const cartCtx = useContext(CartContext);
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+  const cartCtx = useContext(CartContext);
+  const [show, setShow] = useState(false);
 
-   
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   return (
     <>
-      <Button
-        className={props.className}
-        variant={props.variant}
-        onClick={handleShow}
-      >
-        {props.title}<Badge className="ms-2" bg="info">{cartCtx.quantity}</Badge>
+      <Button variant="danger" onClick={handleShow} className="me-2">
+        {props.title}
+        {true && (
+          <Badge className="mx-2" bg="info">
+            {cartCtx.quantity}
+          </Badge>
+        )}
       </Button>
-
-      <Modal tabindex="-1" show={show} onHide={handleClose} animation={true}>
-        <Modal.Header closeButton>
-          <Modal.Title className="">CART</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Container fluid className="d-flex justify-content-between">
+      <Offcanvas
+        style={{ width: "27rem" }}
+        className=""
+        placement="end"
+        show={show}
+        onHide={handleClose}
+        {...props}
+      >
+        <Offcanvas.Header closeButton>
+          <Offcanvas.Title>
+            <h2>CART</h2>
+          </Offcanvas.Title>
+        </Offcanvas.Header>
+        <Offcanvas.Body>
+          <CartList />
+          <Container fluid className="d-flex justify-content-around my-3">
             <Row>
-              <Col lg={3}>
-                <h4>ITEMS</h4>
+              <Col>
+                <h3>Total Amount</h3>
               </Col>
-
-              <Col lg={3}>
-                <h4>PRICE</h4>
-              </Col>
-              <Col lg={3}>
-                <h4>QUANTITY</h4>
+              <Col>
+                <h3>${cartCtx.totalAmount}</h3>
               </Col>
             </Row>
           </Container>
-          <Container fluid>
-                      <CartList />
-          </Container>
-
-          <Modal.Footer>
-            <strong>Total ${cartCtx.totalAmount}</strong>
-          </Modal.Footer>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="info" onClick={handleClose}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
-      </Modal>
+        </Offcanvas.Body>
+      </Offcanvas>
     </>
   );
 };

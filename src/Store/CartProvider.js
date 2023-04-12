@@ -27,7 +27,7 @@ const CartProvider = (props) => {
   let quantity = 0;
   const totalAmountHandler = () => {
     cartItem.forEach((item) => {
-      console.log(item)
+      // console.log(item)
       amount = parseInt(amount + item.quantity * item.price);
       quantity = parseInt(quantity + item.quantity);
     });
