@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState,useEffect,useContext} from 'react'
 import {useLocation,NavLink,} from 'react-router-dom';
 import {
   Navbar,
@@ -10,10 +10,12 @@ import {
 import Cart from './Cart/Cart';
 import Bg from "./Bg";
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import CreateAuthCtx from '../Store/AuthCtx/Auth-Context';
 // import Footer from "../Components/Footer";
 
 
 const NavBar = () => {
+  const AuthCtx = useContext(CreateAuthCtx);
   const [store, setIsStore] = useState(false);
   const [isProduct, setIsProduct] = useState(false);
 
@@ -77,7 +79,9 @@ const NavBar = () => {
               CONTACT
             </NavLink>
           </Navbar.Brand>
-          <Link to="/login">LogIn</Link>
+
+          {!AuthCtx.isLoggedIn &&<Link to="/login">LogIn</Link>}
+
         </Container>
         {store && (
           <Cart

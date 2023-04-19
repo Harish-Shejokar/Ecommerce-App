@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useContext} from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import StorePage from "./Pages/StorePage/StorePage";
 import About from "./Pages/AboutPage/About";
@@ -8,33 +8,38 @@ import Footer from "./Components/Footer";
 import HomePage from "./Pages/HomePage/HomePage";
 import ContactPage from "./Pages/ContactPage/ContactPage";
 import Login from "./Pages/LoginPage/Login";
+import CreateAuthCtx from "./Store/AuthCtx/Auth-Context";
 
 const App = () => {
+  const AuthCtx = useContext(CreateAuthCtx);
   return (
     <>
       <NavBar />
       <Switch>
         <Route path="/" exact>
-          <Redirect to="/home">
-            <HomePage />
-          </Redirect>
+          {AuthCtx.isLoggedIn && <Redirect to="/home" />}
+          {!AuthCtx.isLoggedIn && <Redirect to="/login" />}
         </Route>
-
         <Route path="/home">
-          <HomePage /> 
+          {AuthCtx.isLoggedIn && <HomePage />}
+          {!AuthCtx.isLoggedIn && <Redirect to="/login" />}
         </Route>
         <Route path="/store">
-          <StorePage />
+          {AuthCtx.isLoggedIn && <StorePage />}
+          {!AuthCtx.isLoggedIn && <Redirect to="/login" />}
         </Route>
         <Route path="/about">
-          <About />
+          {AuthCtx.isLoggedIn && <About />}
+          {!AuthCtx.isLoggedIn && <Redirect to="/login" />}
         </Route>
         <Route path="/contact">
-          <ContactPage />
+          {AuthCtx.isLoggedIn && <ContactPage />}
+          {!AuthCtx.isLoggedIn && <Redirect to="/login" />}
         </Route>
-  
+
         <Route path="/login">
-          <Login />
+          {!AuthCtx.isLoggedIn && <Login />}
+          {AuthCtx.isLoggedIn && <Redirect to="/login" />}
         </Route>
 
         <Route path="*">

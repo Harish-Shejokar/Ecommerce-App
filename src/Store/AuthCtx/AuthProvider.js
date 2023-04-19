@@ -10,8 +10,11 @@ const AuthProvider = (props) => {
     localStorage.setItem("token", token);
   };
 
+  const userLogIn = !!tokens;
+  console.log(userLogIn);
   const context = {
     token: tokens,
+    isLoggedIn: userLogIn,
     addTokens: addTokensHandler,
   };
   return (
