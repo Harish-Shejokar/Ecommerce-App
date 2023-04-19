@@ -77,34 +77,7 @@ const NavBar = () => {
               CONTACT
             </NavLink>
           </Navbar.Brand>
-          <Navbar.Brand className="mx-4">
-            <NavLink
-              to="/product"
-              style={({ isActive }) => ({
-                textDecoration: "none",
-                color: "white",
-              })}
-            >
-              <Dropdown as={ButtonGroup}>
-                <Button variant="success">Product</Button>
-
-                <Dropdown.Toggle
-                  split
-                  variant="success"
-                  id="dropdown-split-basic"
-                />
-
-                <Dropdown.Menu>
-                  <Dropdown.Item>
-                    <Link to="/product?category=electronics&brand=boat">Electronics</Link>
-                  </Dropdown.Item>
-                  <Dropdown.Item>
-                    <Link to="/product?category=mobiles&brand=OnePLus">Mobiles</Link>
-                  </Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-            </NavLink>
-          </Navbar.Brand>
+          <Link to="/login">LogIn</Link>
         </Container>
         {store && (
           <Cart

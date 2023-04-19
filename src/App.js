@@ -7,8 +7,7 @@ import NavBar from "./Components/NavBar";
 import Footer from "./Components/Footer";
 import HomePage from "./Pages/HomePage/HomePage";
 import ContactPage from "./Pages/ContactPage/ContactPage";
-import ProductDetailsPage from "./Pages/StorePage/ProductDetail/ProductDetailsPage";
-import Product from "./Pages/Product";
+import Login from "./Pages/LoginPage/Login";
 
 const App = () => {
   return (
@@ -22,7 +21,7 @@ const App = () => {
         </Route>
 
         <Route path="/home">
-          <HomePage />
+          <HomePage /> 
         </Route>
         <Route path="/store">
           <StorePage />
@@ -33,13 +32,9 @@ const App = () => {
         <Route path="/contact">
           <ContactPage />
         </Route>
-
-        <Route path="/productDetails/:productId/">
-          <ProductDetailsPage />
-        </Route>
-
-        <Route path="/product">
-          <Product/>
+  
+        <Route path="/login">
+          <Login />
         </Route>
 
         <Route path="*">

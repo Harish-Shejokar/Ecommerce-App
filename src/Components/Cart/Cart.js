@@ -10,7 +10,7 @@ const Cart = (props) => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
+  // console.log(props);
   return (
     <>
       <Button variant="danger" onClick={handleShow} className="me-2">
