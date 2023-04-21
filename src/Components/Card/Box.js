@@ -2,14 +2,38 @@ import React, { useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Card, Container, Button } from "react-bootstrap";
 import CartContext from "../../Store/Cart-Context";
+import CreateAuthCtx from "../../Store/AuthCtx/Auth-Context";
 // import ProductDetailsPage from "../../Pages/StorePage/ProductDetail/ProductDetailsPage";
 
 const Box = (props) => {
   const crtx = useContext(CartContext);
+  const AuthCtx = useContext(CreateAuthCtx);
   
-  const buttonHandler = (e) => {
-    console.log(Math.random())
+  const email = AuthCtx.userEmail.replace(/[^a-z0-9 -]/gi, "");
+  const buttonHandler = async (e) => {
     crtx.addItemToCart({ ...props.data, quantity: 1 });
+    let dataFromBackEnd;
+    async function getDataFromBackend() {
+      try {
+        const response = await fetch(
+          `https://crudcrud.com/api/f5c90e0e86c543c89117a00514de843f/${email}`
+        );
+
+        if (response.ok) {
+          const data = await response.json();
+          dataFromBackEnd = data;
+          // dataFromBackEnd.map((item) => console.log(item.cartItems));
+          // console.log(dataFromBackEnd)
+          if (dataFromBackEnd.length > 0) crtx.BackEndData(dataFromBackEnd);
+        } else {
+          console.log("get not ok");
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    getDataFromBackend();
+   
   };
 
   const productHandler = () => { };

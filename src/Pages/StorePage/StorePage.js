@@ -21,11 +21,7 @@ const Home = () => {
 
         <Container className="mb-5 d-flex justify-content-center">
           <Cart title={"See the Cart"} />
-          {/* <Button onClick={cartShownHandler} className="p-2" variant="secondary">
-          <strong>See the Cart</strong>
-        </Button> */}
         </Container>
-        {/* <Footer /> */}
       </CartProvider>
     </>
   );

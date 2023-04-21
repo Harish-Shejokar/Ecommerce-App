@@ -9,6 +9,7 @@ import HomePage from "./Pages/HomePage/HomePage";
 import ContactPage from "./Pages/ContactPage/ContactPage";
 import Login from "./Pages/LoginPage/Login";
 import CreateAuthCtx from "./Store/AuthCtx/Auth-Context";
+import ProductDetailsPage from "./Pages/StorePage/ProductDetail/ProductDetailsPage";
 
 const App = () => {
   const AuthCtx = useContext(CreateAuthCtx);
@@ -40,6 +41,9 @@ const App = () => {
         <Route path="/login">
           {!AuthCtx.isLoggedIn && <Login />}
           {AuthCtx.isLoggedIn && <Redirect to="/login" />}
+        </Route>
+        <Route path="/productDetails">
+          {AuthCtx.isLoggedIn && <ProductDetailsPage />}
         </Route>
 
         <Route path="*">

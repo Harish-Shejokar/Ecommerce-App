@@ -2,7 +2,6 @@ import { Offcanvas, Container, Col, Row, Button, Badge } from "react-bootstrap";
 import React, { useContext, useState } from "react";
 import CartList from "./CartList";
 import CartContext from "../../Store/Cart-Context";
-// import { createContext } from "react";
 
 const Cart = (props) => {
   const cartCtx = useContext(CartContext);
@@ -13,13 +12,12 @@ const Cart = (props) => {
   // console.log(props);
   return (
     <>
-      <Button variant="danger" onClick={handleShow} className="me-2">
+      <Button variant="primary" onClick={handleShow} className="me-2">
         {props.title}
-        {true && (
-          <Badge className="mx-2" bg="info">
-            {cartCtx.quantity}
-          </Badge>
-        )}
+
+        <Badge className="mx-2" bg="info">
+          {cartCtx.quantity}
+        </Badge>
       </Button>
       <Offcanvas
         style={{ width: "27rem" }}

@@ -36,7 +36,7 @@ const Login = () => {
       if (response.ok) {
         const data = await response.json();
         // console.log(data.idToken);
-        AuthCtx.addTokens(data.idToken);
+        AuthCtx.addTokens(data.idToken,email);
         history.replace("/store");
       } else {
         alert("Invalid-Authentication");
