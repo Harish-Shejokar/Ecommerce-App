@@ -9,10 +9,7 @@ const CartList =  () => {
   const AuthCtx = useContext(CreateAuthCtx);
   // console.log(email);
   
-  // useEffect(() => {
-    
-  //   // console.log(dataFromBackEnd)
-  // });
+ 
 
   const removeHandler = (e) => {
     console.log(e.target.id);

@@ -2,13 +2,20 @@ import { Offcanvas, Container, Col, Row, Button, Badge } from "react-bootstrap";
 import React, { useContext, useState } from "react";
 import CartList from "./CartList";
 import CartContext from "../../Store/Cart-Context";
+import CreateAuthCtx from "../../Store/AuthCtx/Auth-Context";
 
 const Cart = (props) => {
   const cartCtx = useContext(CartContext);
+  const AuthCtx = useContext(CreateAuthCtx);
   const [show, setShow] = useState(false);
+  
 
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleShow = () => {
+    setShow(true);
+    // cartCtx.updateDataOnCart();
+    
+  }
   // console.log(props);
   return (
     <>
@@ -16,7 +23,7 @@ const Cart = (props) => {
         {props.title}
 
         <Badge className="mx-2" bg="info">
-          {cartCtx.quantity}
+        {cartCtx.quantity}
         </Badge>
       </Button>
       <Offcanvas

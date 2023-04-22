@@ -10,30 +10,34 @@ const Box = (props) => {
   const AuthCtx = useContext(CreateAuthCtx);
   
   const email = AuthCtx.userEmail.replace(/[^a-z0-9 -]/gi, "");
-  const buttonHandler = async (e) => {
-    crtx.addItemToCart({ ...props.data, quantity: 1 });
-    let dataFromBackEnd;
-    async function getDataFromBackend() {
-      try {
-        const response = await fetch(
-          `https://crudcrud.com/api/f5c90e0e86c543c89117a00514de843f/${email}`
-        );
+  
+  const buttonHandler =  (e) => {
+    crtx.addItemToCart({...props.data, quantity: 1 });
 
-        if (response.ok) {
-          const data = await response.json();
-          dataFromBackEnd = data;
-          // dataFromBackEnd.map((item) => console.log(item.cartItems));
-          // console.log(dataFromBackEnd)
-          if (dataFromBackEnd.length > 0) crtx.BackEndData(dataFromBackEnd);
-        } else {
-          console.log("get not ok");
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    }
-    getDataFromBackend();
-   
+     let dataFromBackEnd;
+     async function getDataFromBackend() {
+       try {
+         const response = await fetch(
+           `https://crudcrud.com/api/b0d5e1c3e3ae4132838eaca9d58752b2/${email}`
+         );
+
+         if (response.ok) {
+           const data = await response.json();
+           dataFromBackEnd = data;
+           // dataFromBackEnd.map((item) => console.log(item.cartItems));
+           console.log("get ok",dataFromBackEnd);
+           
+           crtx.BackEndData(dataFromBackEnd);
+         } else {
+           console.log("get not ok");
+         }
+       } catch (err) {
+         console.log(err);
+       }
+     }
+    //  getDataFromBackend();
+
+      
   };
 
   const productHandler = () => { };
