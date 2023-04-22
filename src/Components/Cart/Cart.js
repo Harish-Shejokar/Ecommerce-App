@@ -19,10 +19,10 @@ const Cart = (props) => {
   // console.log(props);
   return (
     <>
-      <Button variant="primary" onClick={handleShow} className="me-2">
+      <Button variant={props.variant} onClick={handleShow} className="me-2">
         {props.title}
 
-        <Badge className="mx-2" bg="info">
+        <Badge className="mx-2" bg="danger">
         {cartCtx.quantity}
         </Badge>
       </Button>

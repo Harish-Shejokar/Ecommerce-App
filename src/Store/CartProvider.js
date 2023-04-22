@@ -1,7 +1,6 @@
-import React, { useEffect, useState, useContext, useCallback } from "react";
+import React, { useEffect, useState, useContext,  } from "react";
 import CartContext from "./Cart-Context";
 import CreateAuthCtx from "./AuthCtx/Auth-Context";
-import { Prev } from "react-bootstrap/esm/PageItem";
 
 const CartProvider = (props) => {
   const AuthCtx = useContext(CreateAuthCtx);

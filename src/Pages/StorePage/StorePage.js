@@ -10,7 +10,7 @@ import CartProvider from "../../Store/CartProvider";
 const Home = () => {
   return (
     <>
-      <CartProvider>
+      
         {/* <NavBar /> */}
         <main>
           <section>
@@ -20,9 +20,9 @@ const Home = () => {
         </main>
 
         <Container className="mb-5 d-flex justify-content-center">
-          <Cart title={"See the Cart"} />
+          <Cart title={"See the Cart"} variant="info" />
         </Container>
-      </CartProvider>
+      
     </>
   );
 }

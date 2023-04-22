@@ -6,18 +6,22 @@ import reportWebVitals from "./reportWebVitals";
 import {} from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 
+
 // React bootstrap configuration
 import "../node_modules/react-bootstrap/dist/react-bootstrap";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import AuthProvider from "./Store/AuthCtx/AuthProvider";
+import CartProvider from "./Store/CartProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <AuthProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <CartProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </CartProvider>
     </AuthProvider>
   </React.StrictMode>
 );

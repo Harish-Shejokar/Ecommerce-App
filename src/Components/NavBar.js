@@ -85,10 +85,9 @@ const NavBar = () => {
         </Container>
         {store && (
           <Cart
-            className=""
             title={"CART"}
             variant="outline-info"
-            navbar="true"
+      
           />
         )}
       </Navbar>
