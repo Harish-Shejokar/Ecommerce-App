@@ -147,20 +147,26 @@ const CartProvider = (props) => {
   },[])
 
   const removeItemFromCart = (item) => {
+    let majorUpdationInCart = false;
+    let updatedList;
     setCartItem((prevItem) => {
       prevItem.forEach((elem) => {
         if (elem.quantity === 1 && elem.title === item) {
           console.log("hi");
-          prevItem = prevItem.filter((list) => {
+          majorUpdationInCart = true;
+          updatedList = prevItem.filter((list) => {
             return list !== elem;
           });
+
         } else if (elem.title === item) {
           elem.quantity = Number(elem.quantity - 1);
+          updatedList = [...prevItem];
         }
       });
 
-      return [...prevItem];
+      return [...updatedList];
     });
+    putCartItemOnCrud(updatedList);
   };
 
   const Context = {
