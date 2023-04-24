@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext,  } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import CartContext from "./Cart-Context";
 import CreateAuthCtx from "./AuthCtx/Auth-Context";
 
@@ -7,42 +7,20 @@ const CartProvider = (props) => {
   const [totalAmount, setTotalAmount] = useState(0);
   const [totalQuantity, setTotalQuantity] = useState(0);
   const [cartItem, setCartItem] = useState([]);
+  let email = '';
+  if(AuthCtx.isLoggedIn)
+   email = AuthCtx.userEmail.replace(/[^a-z0-9 -]/gi, "");
+  
+  const [putId, setPutId] = useState(localStorage.getItem(email));
 
-  async function getDataFromBackend() {
-   
-  const email = AuthCtx.userEmail.replace(/[^a-z0-9 -]/gi, "");
-   try {
-     const response = await fetch(
-       `https://crudcrud.com/api/b0d5e1c3e3ae4132838eaca9d58752b2/${email}`
-     );
-
-     if (response.ok) {
-       const data = await response.json();
-       const dataFromBackEnd = data;
-       console.log("get ok", dataFromBackEnd);
-       console.log(dataFromBackEnd[0].cartItems);
-       const onlyCartItemsArray = dataFromBackEnd[0].cartItems;
-       setCartItem(onlyCartItemsArray);
-     } else {
-       console.log("get not ok");
-     }
-   } catch (err) {
-     console.log(err);
-   }
- }
-
-
-  // console.log(cartItem)
-  const postDataOnBackEnd = async () => {
-    const email = AuthCtx.userEmail.replace(/[^a-z0-9 -]/gi, "");
-
+  const postDataOnBackEnd = async (newCartItems) => {
     try {
       const response = await fetch(
-        `https://crudcrud.com/api/b0d5e1c3e3ae4132838eaca9d58752b2/${email}`,
+        `https://crudcrud.com/api/88c17407b0aa425d9dbb8766b4c8c08a/${email}`,
         {
           method: "POST",
           body: JSON.stringify({
-            cartItems: cartItem,
+            cartItems: newCartItems,
           }),
           headers: {
             "Content-Type": "application/json",
@@ -51,8 +29,11 @@ const CartProvider = (props) => {
       );
 
       if (response.ok) {
-        console.log("ok");
+        console.log("post ok");
         const data = await response.json();
+        console.log(data._id);
+        localStorage.setItem(email, data._id);
+        setPutId(localStorage.getItem(email));
         // console.log(data);
       } else {
         console.log("not ok");
@@ -62,23 +43,50 @@ const CartProvider = (props) => {
     }
   };
 
-  const deleteDataFromBackend = async (Id) => {
-    const email = AuthCtx.userEmail.replace(/[^a-z0-9 -]/gi, "");
-    // console.log(email);
+  const putCartItemOnCrud = async (newCartItems) => {
+    // console.log(putId);
+
     try {
       const response = await fetch(
-        `https://crudcrud.com/api/b0d5e1c3e3ae4132838eaca9d58752b2/${email}/${Id}`,
+        `https://crudcrud.com/api/88c17407b0aa425d9dbb8766b4c8c08a/${email}/${localStorage.getItem(
+          email
+        )}`,
         {
-          method: "DELETE",
+          method: "PUT",
+          body: JSON.stringify({
+            cartItems: newCartItems,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
       );
 
       if (response.ok) {
-        console.log("ok");
+        console.log("put ok");
         // const data = await response.json();
-        // console.log(data);
       } else {
-        console.log("not ok");
+        console.log("put not ok");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getDataFromCrud = async () => {
+    try {
+      const response = await fetch(
+        `https://crudcrud.com/api/88c17407b0aa425d9dbb8766b4c8c08a/${email}`
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        console.log("get ok", data[0].cartItems);
+        console.log(data);
+        setCartItem(data[0].cartItems); 
+      } else {
+        console.log("put not ok");
       }
     } catch (error) {
       console.log(error);
@@ -86,44 +94,34 @@ const CartProvider = (props) => {
   };
 
   const addItemToCartHandler = (item) => {
-  
+    let newCartItems;
+    
+    let flag = false;
+    
     setCartItem((Prev) => {
-      if (Prev.length === 0) return [item];
-      // if item already present then increase its quantity only
-      let flag = false;
-        Prev.map(elem => {
-         if (elem.title === item.title) {
-           flag = true;
-          console.log(elem.quantity);
-          elem.quantity = Number(elem.quantity + 1);
-         } 
-         
-      })
+        // if item already present then increase its quantity only
+        Prev.map((elem) => {
+          if (elem.title === item.title) {
+            flag = true;
+            console.log(elem.quantity);
+            elem.quantity = Number(elem.quantity + 1);
+          }
+        });
+      
+        if(flag) newCartItems = [...Prev];
+        else newCartItems = [item, ...Prev];
 
-      if (flag) return [...Prev];
-      else return [item, ...Prev];
+        console.log(newCartItems);
+        return newCartItems;
     });
-       
-     
-    // setCartItem((prevItem) => {
-    //   let pointer = false;
-    //   console.log(prevItem);
-    //   prevItem.map((elem) => {
-    //     if (elem.title === item.title) {
-    //       pointer = true;
-    //       elem.quantity = parseInt(elem.quantity + 1);
-    //     }
-    //     return [...prevItem];
-    //   });
-
-    //   if (pointer) return [...prevItem];
-    //   else return [...prevItem, item];
-    // });
-
-    // if (cartItem.length > 0) postDataOnBackEnd();
-
+    
     
 
+    if (putId) {
+      putCartItemOnCrud(newCartItems);
+    } else {
+      postDataOnBackEnd(newCartItems);
+    }
   };
 
   let amount = 0;
@@ -132,16 +130,21 @@ const CartProvider = (props) => {
     cartItem.forEach((item) => {
       // console.log(item)
       amount = amount + item.quantity * item.price + 0;
-      quantity = quantity + item.quantity+0;
+      quantity = quantity + item.quantity + 0;
     });
-    
-  }
+  };
   totalAmountHandler();
 
   useEffect(() => {
     setTotalAmount(amount);
     setTotalQuantity(quantity);
+   
+   
   },);
+  
+  useEffect(() => {
+     if (AuthCtx.isLoggedIn) getDataFromCrud();
+  },[])
 
   const removeItemFromCart = (item) => {
     setCartItem((prevItem) => {
@@ -152,7 +155,7 @@ const CartProvider = (props) => {
             return list !== elem;
           });
         } else if (elem.title === item) {
-          elem.quantity = Number(elem.quantity-1);
+          elem.quantity = Number(elem.quantity - 1);
         }
       });
 
@@ -160,31 +163,13 @@ const CartProvider = (props) => {
     });
   };
 
-  const BackEndData = (data) => {
-    data.map((item, index) => {
-      if (item.cartItems.length > 0) {
-        let cartItem = item.cartItems;
-        let Id = item._id;
-        deleteDataFromBackend(Id);
-        console.log(cartItem, Id);
-      }
-    });
-
-    // setCartItem(data);
-  };
-
-  const updateDataOnCart = () => {
-    if (cartItem.length > 0) getDataFromBackend(); // get data from crud-crud and add into cart
-  }
-
   const Context = {
     cartItems: cartItem,
     totalAmount: totalAmount,
     quantity: totalQuantity,
     addItemToCart: addItemToCartHandler,
     removeItemCart: removeItemFromCart,
-    BackEndData: BackEndData,
-    updateDataOnCart: updateDataOnCart,
+    getDataFromCrud,
   };
   return (
     <CartContext.Provider value={Context}>

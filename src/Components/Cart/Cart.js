@@ -13,7 +13,6 @@ const Cart = (props) => {
   const handleClose = () => setShow(false);
   const handleShow = () => {
     setShow(true);
-    // cartCtx.updateDataOnCart();
     
   }
   // console.log(props);

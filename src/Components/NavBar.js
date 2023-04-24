@@ -30,6 +30,12 @@ const NavBar = () => {
     else setIsProduct(false);
 
   }, [location]);
+
+
+  const logoutButton = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('email');
+  }
   
   return (
     <>
@@ -79,7 +85,8 @@ const NavBar = () => {
               CONTACT
             </NavLink>
           </Navbar.Brand>
-
+          
+          {AuthCtx.isLoggedIn && <Button onClick={logoutButton} variant="light">Logout</Button>}
           {!AuthCtx.isLoggedIn &&<Link to="/login">LogIn</Link>}
 
         </Container>

@@ -14,33 +14,8 @@ const Box = (props) => {
   const buttonHandler =  (e) => {
     crtx.addItemToCart({...props.data, quantity: 1 });
 
-     let dataFromBackEnd;
-     async function getDataFromBackend() {
-       try {
-         const response = await fetch(
-           `https://crudcrud.com/api/b0d5e1c3e3ae4132838eaca9d58752b2/${email}`
-         );
-
-         if (response.ok) {
-           const data = await response.json();
-           dataFromBackEnd = data;
-           // dataFromBackEnd.map((item) => console.log(item.cartItems));
-           console.log("get ok",dataFromBackEnd);
-           
-           crtx.BackEndData(dataFromBackEnd);
-         } else {
-           console.log("get not ok");
-         }
-       } catch (err) {
-         console.log(err);
-       }
-     }
-    //  getDataFromBackend();
-
-      
   };
 
-  const productHandler = () => { };
   const obj = {
     price: props.price,
     title: props.title,
@@ -55,7 +30,7 @@ const Box = (props) => {
   return (
     <>
       <Container className="d-flex justify-content-center">
-        <Card style={{ width: "15rem", border: "none" }}>
+        <Card style={{ width: "18rem", border: "none" }}>
           <Link
             to={{
               pathname: `/productDetails/${props.title}`,
@@ -63,7 +38,7 @@ const Box = (props) => {
             }}
           >
             <Card.Img
-              onClick={productHandler}
+              
               className="img-zoom-container"
               variant="top"
               src={props.url}
