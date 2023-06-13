@@ -21,10 +21,12 @@ const Box = (props) => {
     title: props.title,
     url: [
       props.url,
+      props.images[1],
+      props.images[2],
       "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
       "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
-      "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
-      "https://prasadyash2411.github.io/ecom-website/img/Album%204.png",
+      // "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
+      // "https://prasadyash2411.github.io/ecom-website/img/Album%204.png",
     ],
   };
   return (

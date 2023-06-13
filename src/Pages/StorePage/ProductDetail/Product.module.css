@@ -5,7 +5,7 @@ body {
 
 .hedding {
     font-size: 20px;
-    color: #ab8181`;
+    color: #ab8181;
 }
 
 .main-section {
@@ -46,6 +46,22 @@ body {
 .pro-box-section .pro-box img {
     width: 100%;
     height: 200px;
+}
+
+.sideImageColumn{
+    border: 2px solid red;
+}
+
+@media  (min-width:360px) and (max-width: 650px) {
+    .sideImages{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}
+.sideImages{
+    display: flex;
+    flex-direction: row;
 }
 
 @media (min-width:360px) and (max-width:640px) {

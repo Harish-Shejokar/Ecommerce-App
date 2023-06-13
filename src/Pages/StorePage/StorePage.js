@@ -12,12 +12,13 @@ const Home = () => {
     <>
       
         {/* <NavBar /> */}
-        <main>
-          <section>
-            <h2 className="text-center mt-4">Music</h2>
+        {/* <main> */}
+      {/* <section> */}
+      
+            <h2 className="text-center mt-4">Items</h2>
             <MusicSection />
-          </section>
-        </main>
+          {/* </section> */}
+        {/* </main> */}
 
         <Container className="mb-5 d-flex justify-content-center">
           <Cart title={"See the Cart"} variant="info" />

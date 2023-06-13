@@ -7,14 +7,18 @@ import spotify from "../assets/spotImg.jfif";
 const Footer = () => {
   return (
     <footer>
-      <Navbar className="py-3" bg="info" expand="lg" variant="dark">
-        <Container>
-          <Row>
+      <Navbar className="py-3" bg="info" expand="lg" variant="light">
+        <Container  className="d-flex justify-content-between ">
+          <Row sm={4}>
             <h1 className="text-white">The Generics</h1>
           </Row>
-          <Row>
+          <Row sm={4} className=" ">
             <Col>
-              <Navbar.Brand className="mx-2" href="#home">
+              <Navbar.Brand
+                className="mx-2"
+                href="https://www.facebook.com/"
+                target="_blank"
+              >
                 <img
                   src={youtube}
                   alt="loading"
@@ -24,7 +28,11 @@ const Footer = () => {
               </Navbar.Brand>
             </Col>
             <Col>
-              <Navbar.Brand className="mx-2 " href="#STORE">
+              <Navbar.Brand
+                className="mx-2 "
+                href="https://open.spotify.com/?"
+                target="_blank"
+              >
                 <img
                   src={spotify}
                   alt="loading"
@@ -34,7 +42,11 @@ const Footer = () => {
               </Navbar.Brand>
             </Col>
             <Col>
-              <Navbar.Brand className="mx-2" href="#ABOUT">
+              <Navbar.Brand
+                className="mx-2"
+                href="https://www.youtube.com/"
+                target="_blank"
+              >
                 <img src={fb} alt="loading" width={"30px"} height={"30px"} />
               </Navbar.Brand>
             </Col>

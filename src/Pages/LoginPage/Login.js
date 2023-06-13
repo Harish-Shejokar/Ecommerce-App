@@ -1,4 +1,4 @@
-import React, { useRef, useContext } from "react";
+import React, { useRef, useContext, } from "react";
 import classes from "./Login.module.css";
 import { useHistory } from "react-router-dom";
 import CreateAuth from '../../Store/AuthCtx/Auth-Context'
@@ -8,6 +8,9 @@ const Login = () => {
   const history = useHistory();
   const emailRef = useRef();
   const passRef = useRef();
+
+ 
+
 
   const formHandler = async (event) => {
     event.preventDefault();
@@ -38,6 +41,7 @@ const Login = () => {
         // console.log(data.idToken);
         AuthCtx.addTokens(data.idToken,email);
         history.replace("/store");
+        AuthCtx.logInOut();
       } else {
         alert("Invalid-Authentication");
       }

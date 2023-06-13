@@ -4,6 +4,7 @@ import CreateAuthCtx from "./Auth-Context";
 const AuthProvider = (props) => {
   const [tokens, setTokens] = useState(localStorage.getItem('token'));
   const [email, setEmail] = useState(localStorage.getItem('email'));
+  const [isLogin, setIsLogin] = useState(email === null ? false : true);
 
   const addTokensHandler = (token,email) => {
     console.log(token);
@@ -13,12 +14,19 @@ const AuthProvider = (props) => {
     localStorage.setItem('email',email)
   };
 
-  const userLogIn = !!tokens;
+  const logInOutHandler = () => {
+    setIsLogin(prev => {
+      return !prev;
+    });
+  }
+
+  // const userLogIn = !!tokens;
   // console.log(userLogIn,email);
   const context = {
     token: tokens,
     userEmail: email,
-    isLoggedIn: userLogIn,
+    isLoggedIn: isLogin,
+    logInOut : logInOutHandler,
     addTokens: addTokensHandler,
   };
   return (

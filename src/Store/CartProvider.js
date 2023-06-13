@@ -16,7 +16,7 @@ const CartProvider = (props) => {
   const postDataOnBackEnd = async (newCartItems) => {
     try {
       const response = await fetch(
-        `https://crudcrud.com/api/88c17407b0aa425d9dbb8766b4c8c08a/${email}`,
+        `https://crudcrud.com/api/70e9d428de274e93ac235a54e4ab74f0/${email}`,
         {
           method: "POST",
           body: JSON.stringify({
@@ -48,7 +48,7 @@ const CartProvider = (props) => {
 
     try {
       const response = await fetch(
-        `https://crudcrud.com/api/88c17407b0aa425d9dbb8766b4c8c08a/${email}/${localStorage.getItem(
+        `https://crudcrud.com/api/70e9d428de274e93ac235a54e4ab74f0/${email}/${localStorage.getItem(
           email
         )}`,
         {
@@ -76,7 +76,7 @@ const CartProvider = (props) => {
   const getDataFromCrud = async () => {
     try {
       const response = await fetch(
-        `https://crudcrud.com/api/88c17407b0aa425d9dbb8766b4c8c08a/${email}`
+        `https://crudcrud.com/api/70e9d428de274e93ac235a54e4ab74f0/${email}`
       );
 
       if (response.ok) {
@@ -117,11 +117,11 @@ const CartProvider = (props) => {
     
     
 
-    if (putId) {
-      putCartItemOnCrud(newCartItems);
-    } else {
-      postDataOnBackEnd(newCartItems);
-    }
+    // if (putId) {
+    //   putCartItemOnCrud(newCartItems);
+    // } else {
+    //   postDataOnBackEnd(newCartItems);
+    // }
   };
 
   let amount = 0;
@@ -139,12 +139,11 @@ const CartProvider = (props) => {
     setTotalAmount(amount);
     setTotalQuantity(quantity);
    
-   
   },);
   
-  useEffect(() => {
-     if (AuthCtx.isLoggedIn) getDataFromCrud();
-  },[])
+  // useEffect(() => {
+  //    if (AuthCtx.isLoggedIn) getDataFromCrud();
+  // },[AuthCtx.isLoggedIn])
 
   const removeItemFromCart = (item) => {
     let majorUpdationInCart = false;

@@ -1,57 +1,57 @@
-import React,{useContext} from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
-import StorePage from "./Pages/StorePage/StorePage";
-import About from "./Pages/AboutPage/About";
-import ErrorPage from "./Pages/ErrorPage";
+import "./App.css";
+import { Spinner } from "react-bootstrap";
+import React, { Suspense, lazy } from "react";
+import { Switch } from "react-router-dom";
+import PrivateRoutes from "./Routes/PrivateRoutes";
 import NavBar from "./Components/NavBar";
-import Footer from "./Components/Footer";
-import HomePage from "./Pages/HomePage/HomePage";
-import ContactPage from "./Pages/ContactPage/ContactPage";
-import Login from "./Pages/LoginPage/Login";
-import CreateAuthCtx from "./Store/AuthCtx/Auth-Context";
-import ProductDetailsPage from "./Pages/StorePage/ProductDetail/ProductDetailsPage";
+import PublicRoutes from "./Routes/PublicRoutes";
+// import About from "./Pages/AboutPage/About";
+// import ErrorPage from "./Pages/ErrorPage";
+// import Footer from "./Components/Footer";
+// import HomePage from "./Pages/HomePage/HomePage";
+// import ContactPage from "./Pages/ContactPage/ContactPage";
+// import Login from "./Pages/LoginPage/Login";
+// import ProductDetailsPage from "./Pages/StorePage/ProductDetail/ProductDetailsPage";
+const StorePage = lazy(() => import("./Pages/StorePage/StorePage"));
+const About = lazy(() => import("./Pages/AboutPage/About"));
+const ErrorPage = lazy(() => import("./Pages/ErrorPage"));
+const Footer = lazy(() => import("./Components/Footer"));
+const HomePage = lazy(() => import("./Pages/HomePage/HomePage"));
+const ContactPage = lazy(() => import("./Pages/ContactPage/ContactPage"));
+const Login = lazy(() => import("./Pages/LoginPage/Login"));
+const ProductDetailsPage = lazy(() =>
+  import("./Pages/StorePage/ProductDetail/ProductDetailsPage")
+);
+// const NavBar = lazy(() => import("./Components/NavBar"));
 
 const App = () => {
-  const AuthCtx = useContext(CreateAuthCtx);
   return (
-    <>
+    <div className="App">
       <NavBar />
-      <Switch>
-        <Route path="/" exact>
-          {AuthCtx.isLoggedIn && <Redirect to="/home" />}
-          {!AuthCtx.isLoggedIn && <Redirect to="/login" />}
-        </Route>
-        <Route path="/home">
-          {AuthCtx.isLoggedIn && <HomePage />}
-          {!AuthCtx.isLoggedIn && <Redirect to="/login" />}
-        </Route>
-        <Route path="/store">
-          {AuthCtx.isLoggedIn && <StorePage />}
-          {!AuthCtx.isLoggedIn && <Redirect to="/login" />}
-        </Route>
-        <Route path="/about">
-          {AuthCtx.isLoggedIn && <About />}
-          {!AuthCtx.isLoggedIn && <Redirect to="/login" />}
-        </Route>
-        <Route path="/contact">
-          {AuthCtx.isLoggedIn && <ContactPage />}
-          {!AuthCtx.isLoggedIn && <Redirect to="/login" />}
-        </Route>
+      <Suspense
+        fallback={
+          <div>
+            <h1 style={{ textAlign: "center" }}>Loading...</h1>
+            {/* <Spinner style={{textAlign: "center"}} animation="border" variant="dark" size="lg"/> */}
+          </div>
+        }
+      >
+        <Switch>
+          <PrivateRoutes Component={HomePage} path="/home" exact />
+          <PrivateRoutes Component={StorePage} path="/store" exact />
+          <PrivateRoutes Component={About} path="/about" />
+          <PrivateRoutes Component={ContactPage} path="/contact" exact />
+          <PrivateRoutes
+            Component={ProductDetailsPage}
+            path="/productDetails"
+          />
+          <PublicRoutes path="/login" Component={Login} exact />
 
-        <Route path="/login">
-          {!AuthCtx.isLoggedIn && <Login />}
-          {AuthCtx.isLoggedIn && <Redirect to="/login" />}
-        </Route>
-        <Route path="/productDetails">
-          {AuthCtx.isLoggedIn && <ProductDetailsPage />}
-        </Route>
-
-        <Route path="*">
-          <ErrorPage />
-        </Route>
-      </Switch>
-      <Footer />
-    </>
+          <PrivateRoutes Component={ErrorPage} path="*" exact />
+        </Switch>
+        <Footer />
+      </Suspense>
+    </div>
   );
 };
 

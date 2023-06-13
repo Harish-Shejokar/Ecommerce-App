@@ -17,12 +17,12 @@ const ProductDetailsPage = (props) => {
   return (
     <>
       <Container fluid className="my-4 ">
-        <Row>
-          <Col sm={1} className="ms-5 ">
+        <Row className="">
+          <Col xs={5} sm={1} md={2} className="ms-4 d-flex flex-column ">
             {Images.map((Img) => {
               return (
-                <Col key={Math.random()}>
-                  <Figure onClick={imageChangeHandler}>
+                <Col className="sideImageColumn" key={Math.random()}>
+                  <Figure className="sideImages" onClick={imageChangeHandler}>
                     <Figure.Image
                       width={80}
                       height={80}
@@ -35,7 +35,7 @@ const ProductDetailsPage = (props) => {
             })}
           </Col>
 
-          <Col sm={4} className="gx-0">
+          <Col sm={4}  className="d-flex justify-content-center">
             <Figure>
               <Figure.Image
                 width={500}
