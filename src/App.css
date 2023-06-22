@@ -3,7 +3,12 @@
 }
 
 
+
 .active{
   color: #5f99be !important;
   text-decoration: underline !important;
+}
+
+.navbar{
+    background-color: blueviolet !important;
 }

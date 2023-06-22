@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useLocation, NavLink, useHistory } from "react-router-dom";
-import { Navbar, Container, Button, FormControl,Row,Col } from "react-bootstrap";
+import { Navbar, Container, Button, FormControl,Row,Col,NavDropdown,Nav,Form } from "react-bootstrap";
 import Cart from "./Cart/Cart";
 import Bg from "./Bg";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
@@ -15,6 +15,7 @@ const NavBar = () => {
   const history = useHistory();
 
   const location = useLocation();
+  // console.log(location);
   useEffect(() => {
     // console.log(location)
     if (location.pathname === "/store") setIsStore(true);
@@ -34,93 +35,75 @@ const NavBar = () => {
 
   return (
     <>
-      
-      <Navbar className="sticky-top " bg="black" expand="xs" variant="dark">
-        <Container fluid className=" ">
-          <Row className="">
-            <Col>
-              <Navbar.Brand className="mx-4">
-                <NavLink
-                  to="/home"
-                  style={{
-                    textDecoration: "none",
-                    color: "white",
-                  }}
-                >
-                  HOME
-                </NavLink>
-              </Navbar.Brand>
-              <Navbar.Brand className="mx-4">
-                <NavLink
-                  to="/store"
-                  style={{
-                    textDecoration: "none",
-                    color: "white",
-                  }}
-                >
-                  STORE
-                </NavLink>
-              </Navbar.Brand>
-              <Navbar.Brand className="mx-4">
-                <NavLink
-                  to="/about"
-                  style={({ isActive }) => ({
-                    textDecoration: "none",
-                    color: "white",
-                  })}
-                >
-                  ABOUT
-                </NavLink>
-              </Navbar.Brand>
-              <Navbar.Brand className="mx-4">
-                <NavLink
-                  to="/contact"
-                  style={({ isActive }) => ({
-                    textDecoration: "none",
-                    color: "white",
-                  })}
-                >
-                  CONTACT
-                </NavLink>
-              </Navbar.Brand>
-            </Col>
-          </Row>
-
-          <Row className="d-flex justify-content-center mt-3">
-            <Col>
-              {AuthCtx.isLoggedIn && (
-                <Button onClick={logoutButton} variant="light">
-                  Logout
-                </Button>
-              )}
-            </Col>
-            <Col>{!AuthCtx.isLoggedIn && <Link to="/login">LogIn</Link>}</Col>
-            <Col>
-              {/* <NavBar.Text className="search"> */}
-              <FormControl style={{ width: 300 }} placeholder="find Products" />
-              {/* </NavBar.Text> */}
-            </Col>
-            <Col>
+      <Navbar className={classes.navbar} bg="dark" variant="dark" expand="lg">
+        <Container>
+          <Navbar.Brand href="#home" className={classes.logo}>
+            e-STORE
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+              <NavLink to="/home" className={classes.navLinks}>
+                HOME
+              </NavLink>
+              <NavLink
+                to="/store"
+                style={{
+                  textDecoration: "none",
+                  color: "white",
+                }}
+                className={classes.navLinks}
+              >
+                STORE
+              </NavLink>
+              <NavLink
+                to="/about"
+                style={({ isActive }) => ({
+                  textDecoration: "none",
+                  color: "white",
+                })}
+                className={classes.navLinks}
+              >
+                ABOUT
+              </NavLink>
+              <NavLink to="/contact" className={classes.navLinks}>
+                CONTACT
+              </NavLink>
+            </Nav>
+            {/* <Nav className="searchBar"> 
+              <Form>
+                <Form.Control
+                  type="search"
+                  placeholder="Search"
+                  aria-label="Search"
+                  className=""
+                />
+              </Form>
+              <Button className="ms-2" variant="outline-success">
+                Search
+              </Button>
+            </Nav> */}
+            <Nav className="align-right cartBucket">
               {AuthCtx.isLoggedIn && store && (
                 <Cart
-                  className={classes["cart-btn"]}
                   title={"CART"}
                   variant="outline-info"
-                  style={{width:"100px"}}
+                  style={{ width: "100px" }}
                 />
               )}
-            </Col>
-          </Row>
+            </Nav>
+          </Navbar.Collapse>
         </Container>
       </Navbar>
 
-      <main style={{ backgroundColor: "rgb(255,255,255)" }}>
-        {!isProduct && <Bg />}
-
-        {/* <Footer /> */}
-      </main>
+      {/* <main
+        style={{ backgroundColor: "rgb(255,255,255)" }
+          > */}
+        {location.pathname !== "/contact" && <Bg />}
+      {/* </main> */}
     </>
   );
 };
 
 export default NavBar;
+

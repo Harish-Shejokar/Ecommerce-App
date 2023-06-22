@@ -1,35 +1,35 @@
-import React,{useRef} from 'react'
-import classes from './Form.module.css'
+import React, { useRef } from "react";
+import classes from "./Form.module.css";
 
 const Form = () => {
-    const nameRef = useRef();
-    const emailRef = useRef();
-    const phoneRef = useRef();  
+  const nameRef = useRef();
+  const emailRef = useRef();
+  const phoneRef = useRef();
 
-    const formHandler = async (event) => {
-        event.preventDefault();
-         const name = nameRef.current.value;
-         const email = emailRef.current.value;
-         const phone = phoneRef.current.value;
-         
-         const obj = {name,email,phone}
-        console.log(obj);
-        
-        const response = await fetch("https://ecomm-data-afdc5-default-rtdb.firebaseio.com/ecom.json", {
-            method: "POST",
-            body:JSON.stringify(obj),
-            headers: {
-          'Content-Type' : 'application/json'
-        }
-        })
+  const formHandler = async (event) => {
+    event.preventDefault();
+    const name = nameRef.current.value;
+    const email = emailRef.current.value;
+    const phone = phoneRef.current.value;
 
+    const obj = { name, email, phone };
+    console.log(obj);
 
+    // const response = await fetch(
+    //   "https://ecomm-data-afdc5-default-rtdb.firebaseio.com/ecom.json",
+    //   {
+    //     method: "POST",
+    //     body: JSON.stringify(obj),
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //   }
+    // );
 
-         nameRef.current.value = "";
-         emailRef.current.value = "";
-         phoneRef.current.value = "";
-    }
-
+    nameRef.current.value = "";
+    emailRef.current.value = "";
+    phoneRef.current.value = "";
+  };
 
   return (
     <form className={classes.form}>
@@ -44,9 +44,9 @@ const Form = () => {
       />
       <label>Phone</label>
       <input ref={phoneRef} type="number" />
-      <button onClick={formHandler}>Submit</button>
+      <button className="btn" onClick={formHandler}>Submit</button>
     </form>
   );
-}
+};
 
-export default Form
+export default Form;

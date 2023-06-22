@@ -16,7 +16,7 @@ const Home = () => {
       {/* <section> */}
       
             <h2 className="text-center mt-4">Items</h2>
-            <MusicSection />
+            {/* <MusicSection /> */}
           {/* </section> */}
         {/* </main> */}
 
