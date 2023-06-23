@@ -3,11 +3,11 @@ import { Container, Row, Col, Image } from "react-bootstrap";
 
 const content = () => {
   return (
-    <Container>
+    <Container className="">
       <Row>
-        <Col className="col-3 offsets-2 ms-3">
+        <Col lg="3" className="text-center offsets-2">
           <Image
-            className="img rounded"
+            className="img rounded text-center"
             src="https://prasadyash2411.github.io/ecom-website/img/Band%20Members.png"
             alt="loading"
             height="300px"
@@ -15,7 +15,7 @@ const content = () => {
             roundedCircle
           />
         </Col>
-        <Col lg={6}  className="ms-4" >
+        <Col lg={6}  className="ms-5 text-center" >
           
           Lorem ipsum carrots enhanced rebates. Excellent sayings of a man of
           sorrows, hates no prosecutors will unfold in the enduring of which
@@ -32,7 +32,7 @@ const content = () => {
           corrupt, are accusing him of all pleasures, and seek his own, or, to
           the needs of the agony of the choice. We hate the fellow.
         </Col>
-        <Col lg={12} className="mb-4">
+        <Col lg={12} className="ms-5 text-center">
           Lorem ipsum carrots enhanced rebates. Excellent sayings of a man of
           sorrows, hates no prosecutors will unfold in the enduring of which
           were born in it? Often leads smallest mistake some pain main

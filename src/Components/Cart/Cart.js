@@ -1,7 +1,7 @@
 import { Offcanvas, Container, Col, Row, Button, Badge } from "react-bootstrap";
 import React, { useContext, useState } from "react";
 import CartList from "./CartList";
-import CartContext from "../../Store/Cart-Context";
+import CartContext from "../../Store/CartCtx/Cart-Context";
 import CreateAuthCtx from "../../Store/AuthCtx/Auth-Context";
 
 const Cart = (props) => {

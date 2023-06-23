@@ -1,19 +1,19 @@
 import React, { useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Card, Container, Button } from "react-bootstrap";
-import CartContext from "../../Store/Cart-Context";
+import CartContext from "../../Store/CartCtx/Cart-Context";
 import CreateAuthCtx from "../../Store/AuthCtx/Auth-Context";
 // import ProductDetailsPage from "../../Pages/StorePage/ProductDetail/ProductDetailsPage";
 
 const Box = (props) => {
   const crtx = useContext(CartContext);
   const AuthCtx = useContext(CreateAuthCtx);
-  
-  const email = AuthCtx.userEmail.replace(/[^a-z0-9 -]/gi, "");
-  
-  const buttonHandler =  (e) => {
-    crtx.addItemToCart({...props.data, quantity: 1 });
 
+  const email = AuthCtx.userEmail.replace(/[^a-z0-9 -]/gi, "");
+
+  const buttonHandler = () => {
+    console.log(props.data)
+    crtx.addItemToCart({ ...props.data, quantity: 1 });
   };
 
   const obj = {
@@ -31,16 +31,16 @@ const Box = (props) => {
   };
   return (
     <>
-      <Container className="d-flex justify-content-center">
-        <Card style={{ width: "18rem", border: "none" }}>
+      <Container className="d-flex justify-content-center shadow-sm">
+        <Card  style={{ width: "18rem", border: "none" }}>
           <Link
             to={{
-              pathname: `/productDetails/${props.title}`,
+              // pathname: `/productDetails/${props.title}`,
+              pathname: `/productDetails`,
               state: obj,
             }}
           >
             <Card.Img
-              
               className="img-zoom-container"
               variant="top"
               src={props.url}

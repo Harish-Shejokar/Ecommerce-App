@@ -7,10 +7,18 @@ import spotify from "../assets/spotImg.jfif";
 const Footer = () => {
   return (
     <footer>
-      <Navbar className="py-3" bg="info" expand="lg" variant="light">
-        <Container  className="d-flex justify-content-between ">
-          <Row sm={4}>
-            <h1 className="text-white">The Generics</h1>
+      <Navbar
+        sticky="bottom"
+        className="py-3"
+        bg="info"
+        expand="lg"
+        variant="light"
+      >
+        <Container className="d-flex justify-content-between ">
+          <Row>
+            <Col>
+              <h2 className="text-white">e-Store</h2>
+            </Col>
           </Row>
           <Row sm={4} className=" ">
             <Col>

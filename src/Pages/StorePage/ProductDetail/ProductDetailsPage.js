@@ -1,19 +1,31 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Container, Row, Col, Button, Figure } from "react-bootstrap";
+import CartContext from "../../../Store/CartCtx/Cart-Context";
 
-const ProductDetailsPage = (props) => {
+
+const ProductDetailsPage = () => {
+  const crtx = useContext(CartContext)
   const location = useLocation();
 
   const Images = location.state.url;
-
-  // console.log(Images);
+  const data = {
+    title: location.state.title,
+    price: location.state.price,
+    imageUrl: location.state.url[0],
+  }
+  // console.log(data);
 
   const [mainImg, setMainImg] = useState(Images[0]);
   const imageChangeHandler = (e) => {
     setMainImg(e.target.src);
   };
-  // console.log('hey');
+ 
+  const buttonHandler = () => {
+    crtx.addItemToCart({ ...data, quantity: 1 });
+  };
+
+
   return (
     <>
       <Container fluid className="my-4 ">
@@ -35,7 +47,7 @@ const ProductDetailsPage = (props) => {
             })}
           </Col>
 
-          <Col sm={4}  className="d-flex justify-content-center">
+          <Col sm={4} className="d-flex justify-content-center">
             <Figure>
               <Figure.Image
                 width={500}
@@ -75,7 +87,7 @@ const ProductDetailsPage = (props) => {
                   <select
                     style={{ fontWeight: "bolder", padding: ".1rem .5rem" }}
                   >
-                    <option>Size</option>
+                    {/* <option>Size</option> */}
                     <option>S</option>
                     <option>M</option>
                     <option>XL</option>
@@ -89,6 +101,7 @@ const ProductDetailsPage = (props) => {
                 className="py-3 mx-2"
                 style={{ width: "10rem" }}
                 variant="warning"
+                onClick={buttonHandler}
               >
                 ADD TO CART
               </Button>

@@ -1,9 +1,18 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useLocation, NavLink, useHistory } from "react-router-dom";
-import { Navbar, Container, Button, FormControl,Row,Col,NavDropdown,Nav,Form } from "react-bootstrap";
+import { useLocation, NavLink, useHistory, useParams } from "react-router-dom";
+import {
+  Navbar,
+  Container,
+  Button,
+  FormControl,
+  Row,
+  Col,
+  NavDropdown,
+  Nav,
+  Form,
+} from "react-bootstrap";
 import Cart from "./Cart/Cart";
 import Bg from "./Bg";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import CreateAuthCtx from "../Store/AuthCtx/Auth-Context";
 // import Footer from "../Components/Footer";
 import classes from "./NavBar.module.css";
@@ -13,15 +22,17 @@ const NavBar = () => {
   const [store, setIsStore] = useState(false);
   const [isProduct, setIsProduct] = useState(false);
   const history = useHistory();
-
   const location = useLocation();
-  // console.log(location);
+  const { title } = useParams();
+
+  // console.group(title);
+
   useEffect(() => {
     // console.log(location)
     if (location.pathname === "/store") setIsStore(true);
     else setIsStore(false);
 
-    if (location.pathname === "/productDetails/") setIsProduct(true);
+    if (location.pathname === `/productDetails`) setIsProduct(true);
     else setIsProduct(false);
   }, [location]);
 
@@ -30,45 +41,40 @@ const NavBar = () => {
     localStorage.removeItem("email");
     history.replace("/login");
     AuthCtx.logInOut();
-    // window.location.reload(false);
   };
 
   return (
     <>
-      <Navbar className={classes.navbar} bg="dark" variant="dark" expand="lg">
+      <Navbar bg="dark" variant="dark" expand="lg">
         <Container>
-          <Navbar.Brand href="#home" className={classes.logo}>
+          <Navbar.Brand href="#" className={classes.logo}>
             e-STORE
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <NavLink to="/home" className={classes.navLinks}>
+              <NavLink to="/" className={`${classes.navLinks} `}>
                 HOME
               </NavLink>
-              <NavLink
-                to="/store"
-                style={{
-                  textDecoration: "none",
-                  color: "white",
-                }}
-                className={classes.navLinks}
-              >
+              <NavLink to="/store" className={`${classes.navLinks} `}>
                 STORE
               </NavLink>
-              <NavLink
-                to="/about"
-                style={({ isActive }) => ({
-                  textDecoration: "none",
-                  color: "white",
-                })}
-                className={classes.navLinks}
-              >
+              <NavLink to="/about" className={`${classes.navLinks} `}>
                 ABOUT
               </NavLink>
-              <NavLink to="/contact" className={classes.navLinks}>
+              <NavLink to="/contact" className={`${classes.navLinks} `}>
                 CONTACT
               </NavLink>
+
+              {AuthCtx.isLoggedIn && (
+                <Button
+                  className="my-1 ms-2"
+                  variant="light"
+                  onClick={logoutButton}
+                >
+                  LOGOUT
+                </Button>
+              )}
             </Nav>
             {/* <Nav className="searchBar"> 
               <Form>
@@ -84,26 +90,18 @@ const NavBar = () => {
               </Button>
             </Nav> */}
             <Nav className="align-right cartBucket">
-              {AuthCtx.isLoggedIn && store && (
-                <Cart
-                  title={"CART"}
-                  variant="outline-info"
-                  style={{ width: "100px" }}
-                />
+              {AuthCtx.isLoggedIn && (store || isProduct) && (
+                <Cart title={"CART"} variant="outline-info" />
               )}
             </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
 
-      {/* <main
-        style={{ backgroundColor: "rgb(255,255,255)" }
-          > */}
-        {location.pathname !== "/contact" && <Bg />}
-      {/* </main> */}
+      {location.pathname !== `/productDetails` &&
+        location.pathname !== "/contact" && <Bg />}
     </>
   );
 };
 
 export default NavBar;
-

@@ -1,16 +1,13 @@
-import React, { useRef, useContext, } from "react";
+import React, { useRef, useContext } from "react";
 import classes from "./Login.module.css";
-import { useHistory } from "react-router-dom";
-import CreateAuth from '../../Store/AuthCtx/Auth-Context'
+import { useHistory,NavLink } from "react-router-dom";
+import CreateAuth from "../../Store/AuthCtx/Auth-Context";
 
 const Login = () => {
   const AuthCtx = useContext(CreateAuth);
   const history = useHistory();
   const emailRef = useRef();
   const passRef = useRef();
-
- 
-
 
   const formHandler = async (event) => {
     event.preventDefault();
@@ -39,7 +36,7 @@ const Login = () => {
       if (response.ok) {
         const data = await response.json();
         // console.log(data.idToken);
-        AuthCtx.addTokens(data.idToken,email);
+        AuthCtx.addTokens(data.idToken, email);
         history.replace("/store");
         AuthCtx.logInOut();
       } else {
@@ -54,18 +51,25 @@ const Login = () => {
   };
 
   return (
-    <form className={classes.form}>
-      <label>Email</label>
-      <input
-        ref={emailRef}
-        rows="5"
-        className={classes["open-text"]}
-        type="email"
-      />
-      <label>Password</label>
-      <input ref={passRef} type="password" min="3" />
-      <button onClick={formHandler}>LogIn</button>
-    </form>
+    <>
+      <form className={classes.form}>
+      <h1>Login</h1>
+        <label>Email</label>
+        <input
+          ref={emailRef}
+          rows="5"
+          className={classes["open-text"]}
+          type="email"
+        />
+        <label>Password</label>
+        <input ref={passRef} type="password" min="3" />
+        <button onClick={formHandler}>LogIn</button>
+        {/* <div>
+        <strong>Not have an Account</strong>
+        <span><NavLink to="/login">SignUp</NavLink></span>
+      </div> */}
+      </form>
+    </>
   );
 };
 

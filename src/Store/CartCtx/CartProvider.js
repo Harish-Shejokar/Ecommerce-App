@@ -1,16 +1,16 @@
 import React, { useEffect, useState, useContext } from "react";
 import CartContext from "./Cart-Context";
-import CreateAuthCtx from "./AuthCtx/Auth-Context";
+import authContext from "../AuthCtx/Auth-Context"
 
 const CartProvider = (props) => {
-  const AuthCtx = useContext(CreateAuthCtx);
+  const AuthCtx = useContext(authContext);
   const [totalAmount, setTotalAmount] = useState(0);
   const [totalQuantity, setTotalQuantity] = useState(0);
   const [cartItem, setCartItem] = useState([]);
-  let email = '';
-  if(AuthCtx.isLoggedIn)
-   email = AuthCtx.userEmail.replace(/[^a-z0-9 -]/gi, "");
-  
+  let email = "";
+  if (AuthCtx.isLoggedIn)
+    email = AuthCtx.userEmail.replace(/[^a-z0-9 -]/gi, "");
+
   const [putId, setPutId] = useState(localStorage.getItem(email));
 
   const postDataOnBackEnd = async (newCartItems) => {
@@ -84,7 +84,7 @@ const CartProvider = (props) => {
         console.log(data);
         console.log("get ok", data[0].cartItems);
         console.log(data);
-        setCartItem(data[0].cartItems); 
+        setCartItem(data[0].cartItems);
       } else {
         console.log("put not ok");
       }
@@ -95,27 +95,25 @@ const CartProvider = (props) => {
 
   const addItemToCartHandler = (item) => {
     let newCartItems;
-    
-    let flag = false;
-    
-    setCartItem((Prev) => {
-        // if item already present then increase its quantity only
-        Prev.map((elem) => {
-          if (elem.title === item.title) {
-            flag = true;
-            console.log(elem.quantity);
-            elem.quantity = Number(elem.quantity + 1);
-          }
-        });
-      
-        if(flag) newCartItems = [...Prev];
-        else newCartItems = [item, ...Prev];
 
-        console.log(newCartItems);
-        return newCartItems;
+    let flag = false;
+
+    setCartItem((Prev) => {
+      // if item already present then increase its quantity only
+      Prev.map((elem) => {
+        if (elem.title === item.title) {
+          flag = true;
+          console.log(elem.quantity);
+          elem.quantity = Number(elem.quantity + 1);
+        }
+      });
+
+      if (flag) newCartItems = [...Prev];
+      else newCartItems = [item, ...Prev];
+
+      console.log(newCartItems);
+      return newCartItems;
     });
-    
-    
 
     // if (putId) {
     //   putCartItemOnCrud(newCartItems);
@@ -138,9 +136,8 @@ const CartProvider = (props) => {
   useEffect(() => {
     setTotalAmount(amount);
     setTotalQuantity(quantity);
-   
-  },);
-  
+  });
+
   // useEffect(() => {
   //    if (AuthCtx.isLoggedIn) getDataFromCrud();
   // },[AuthCtx.isLoggedIn])
@@ -156,7 +153,6 @@ const CartProvider = (props) => {
           updatedList = prevItem.filter((list) => {
             return list !== elem;
           });
-
         } else if (elem.title === item) {
           elem.quantity = Number(elem.quantity - 1);
           updatedList = [...prevItem];

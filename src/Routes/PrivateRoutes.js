@@ -7,6 +7,8 @@ const PrivateRoutes = ({ Component}) => {
   const AuthCtx = useContext(CreateAuthCtx);
   // console.log(AuthCtx.isLoggedIn);
   return (
+    
+
     <Route>
       {AuthCtx.isLoggedIn ? <Component/> : <Login/>}
     </Route>

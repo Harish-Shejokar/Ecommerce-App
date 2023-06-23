@@ -52,9 +52,9 @@ const MusicSection = () => {
       const data = await response.data;
 
       setData(data.slice(0, 15));
-      console.log(allData);
+      // console.log(allData);
       allData.map((item) => {
-        console.log(item);
+        // console.log(item);
         console.log(item.title, item.price, item.images[0]);
       });
     } catch (error) {

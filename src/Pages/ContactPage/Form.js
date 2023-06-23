@@ -32,20 +32,25 @@ const Form = () => {
   };
 
   return (
-    <form className={classes.form}>
-      <label>Name</label>
-      <input ref={nameRef} type="text" />
-      <label>Email</label>
-      <input
-        ref={emailRef}
-        rows="5"
-        className={classes["open-text"]}
-        type="email"
-      />
-      <label>Phone</label>
-      <input ref={phoneRef} type="number" />
-      <button className="btn" onClick={formHandler}>Submit</button>
-    </form>
+    <>
+      <h1>Contact Us</h1>
+      <form className={classes.form}>
+        <label>Name</label>
+        <input ref={nameRef} type="text" />
+        <label>Email</label>
+        <input
+          ref={emailRef}
+          rows="5"
+          className={classes["open-text"]}
+          type="email"
+        />
+        <label>Message</label>
+        <textarea ref={phoneRef} type="message" rows="5" />
+        <button className="btn" onClick={formHandler}>
+          Submit
+        </button>
+      </form>
+    </>
   );
 };
 

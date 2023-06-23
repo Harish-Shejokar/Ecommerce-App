@@ -32,12 +32,17 @@ const App = () => {
         fallback={
           <div>
             <h1 style={{ textAlign: "center" }}>Loading...</h1>
-            {/* <Spinner style={{textAlign: "center"}} animation="border" variant="dark" size="lg"/> */}
+            {/* <Spinner
+              style={{ textAlign: "center" }}
+              animation="border"
+              variant="dark"
+              size="lg"
+            /> */}
           </div>
         }
       >
         <Switch>
-          <PrivateRoutes Component={HomePage} path="/home" exact />
+          <PrivateRoutes exact Component={HomePage} path="/" />
           <PrivateRoutes Component={StorePage} path="/store" exact />
           <PrivateRoutes Component={About} path="/about" />
           <PrivateRoutes Component={ContactPage} path="/contact" exact />
@@ -46,8 +51,7 @@ const App = () => {
             path="/productDetails"
           />
           <PublicRoutes path="/login" Component={Login} exact />
-
-          <PrivateRoutes Component={ErrorPage} path="*" exact />
+          <PrivateRoutes Component={ErrorPage} path="*" />
         </Switch>
         <Footer />
       </Suspense>

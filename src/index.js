@@ -11,7 +11,7 @@ import { BrowserRouter } from "react-router-dom";
 import "../node_modules/react-bootstrap/dist/react-bootstrap";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import AuthProvider from "./Store/AuthCtx/AuthProvider";
-import CartProvider from "./Store/CartProvider";
+import CartProvider from "./Store/CartCtx/CartProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

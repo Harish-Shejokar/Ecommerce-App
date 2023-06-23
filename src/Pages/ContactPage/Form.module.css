@@ -58,3 +58,16 @@
   background-color: #0ea7db;
   border-color: #0ea7db;
 }
+
+.form textarea{
+  width: 100%;
+  border:2px solid #00bfff;
+}
+
+ h1{
+  color: #00bfff;
+  text-align: center;
+  font-weight: bolder;
+  font-style: italic;
+  margin-top: 1rem;
+}

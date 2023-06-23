@@ -2,12 +2,12 @@
   min-height: 752px;
 }
 
-
-
 .active{
-  color: #5f99be !important;
-  text-decoration: underline !important;
+     /* color:white!important; */
+    /* text-decoration: underline!important; */
+    /* border-bottom:2px solid white!important; */
 }
+
 
 .navbar{
     background-color: blueviolet !important;
