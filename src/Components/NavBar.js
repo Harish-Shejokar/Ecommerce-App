@@ -37,8 +37,7 @@ const NavBar = () => {
   }, [location]);
 
   const logoutButton = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("email");
+    localStorage.clear();
     history.replace("/login");
     AuthCtx.logInOut();
   };

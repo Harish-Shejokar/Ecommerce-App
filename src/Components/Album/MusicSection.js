@@ -55,7 +55,7 @@ const MusicSection = () => {
       // console.log(allData);
       allData.map((item) => {
         // console.log(item);
-        console.log(item.title, item.price, item.images[0]);
+        // console.log(item.title, item.price, item.images[0]);
       });
     } catch (error) {
       console.log(error);
@@ -64,7 +64,7 @@ const MusicSection = () => {
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [allData]);
 
   return (
     <Container fluid>
@@ -74,8 +74,9 @@ const MusicSection = () => {
             title: item.title,
             price: item.price,
             imageUrl: item.images[0],
+            id : item.id,
           };
-
+          {/* console.log(item); */}
           return (
             <Col className=" mb-5 " key={item.title}>
               <h4 className="text-center">{item.title}</h4>

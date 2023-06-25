@@ -8,13 +8,12 @@ const Cart = (props) => {
   const cartCtx = useContext(CartContext);
   const AuthCtx = useContext(CreateAuthCtx);
   const [show, setShow] = useState(false);
-  
 
   const handleClose = () => setShow(false);
   const handleShow = () => {
     setShow(true);
-    
-  }
+    // cartCtx.getCartItemsFromFirebase();
+  };
   // console.log(props);
   return (
     <>
@@ -22,7 +21,7 @@ const Cart = (props) => {
         {props.title}
 
         <Badge className="mx-2" bg="danger">
-        {cartCtx.quantity}
+          {cartCtx.quantity}
         </Badge>
       </Button>
       <Offcanvas

@@ -12,7 +12,7 @@ const Box = (props) => {
   const email = AuthCtx.userEmail.replace(/[^a-z0-9 -]/gi, "");
 
   const buttonHandler = () => {
-    console.log(props.data)
+    // console.log(props.data)
     crtx.addItemToCart({ ...props.data, quantity: 1 });
   };
 
