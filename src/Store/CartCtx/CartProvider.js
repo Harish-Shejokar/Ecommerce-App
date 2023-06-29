@@ -186,8 +186,9 @@ const CartProvider = (props) => {
   }, [cartItem]);
 
   useEffect(() => {
-     if (AuthCtx.isLoggedIn) getCartItemsFromFirebase();
-  },[AuthCtx.isLoggedIn])
+    getCartItemsFromFirebase();
+    
+  },[])
 
   const removeItemFromCart = (item) => {
     let majorUpdationInCart = false;

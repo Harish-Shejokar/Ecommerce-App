@@ -1,19 +1,20 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { Card, Container, Button } from "react-bootstrap";
+import { Card, Container, Button, Spinner } from "react-bootstrap";
 import CartContext from "../../Store/CartCtx/Cart-Context";
 import CreateAuthCtx from "../../Store/AuthCtx/Auth-Context";
-// import ProductDetailsPage from "../../Pages/StorePage/ProductDetail/ProductDetailsPage";
 
 const Box = (props) => {
   const crtx = useContext(CartContext);
   const AuthCtx = useContext(CreateAuthCtx);
-
+  const [disable, setDisable] = useState(false);
   const email = AuthCtx.userEmail.replace(/[^a-z0-9 -]/gi, "");
 
   const buttonHandler = () => {
     // console.log(props.data)
+    setDisable(true);
     crtx.addItemToCart({ ...props.data, quantity: 1 });
+    setInterval(() => setDisable(false), 1000);
   };
 
   const obj = {
@@ -32,7 +33,7 @@ const Box = (props) => {
   return (
     <>
       <Container className="d-flex justify-content-center shadow-sm">
-        <Card  style={{ width: "18rem", border: "none" }}>
+        <Card style={{ width: "18rem", border: "none" }}>
           <Link
             to={{
               // pathname: `/productDetails/${props.title}`,
@@ -51,9 +52,13 @@ const Box = (props) => {
 
           <div className="d-flex justify-content-between ">
             <div>${props.price}</div>
-            <Button type="button" onClick={buttonHandler} variant="info">
-              <strong className="mt-2 text-white">ADD TO CART</strong>
-            </Button>
+            {disable ? (
+              <Spinner animation="border" variant="dark" size="lg" />
+            ) : (
+              <Button type="button" onClick={buttonHandler} variant="info">
+                <strong className="mt-2 text-white">ADD TO CART</strong>
+              </Button>
+            )}
           </div>
         </Card>
       </Container>

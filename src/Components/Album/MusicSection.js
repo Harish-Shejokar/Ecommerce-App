@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import Box from "../Card/Box";
 import axios, { all } from "axios";
+import CartContext from "../../Store/CartCtx/Cart-Context";
 
 const MusicSection = () => {
+  const CartCtx = useContext(CartContext);
   const productsArr = [
     {
       title: "Colors",
@@ -65,6 +67,10 @@ const MusicSection = () => {
   useEffect(() => {
     getData();
   }, [allData]);
+  
+  // useEffect(() => {
+  //   // CartCtx.getCartItemsFromFirebase();
+  // },[])
 
   return (
     <Container fluid>
@@ -78,7 +84,7 @@ const MusicSection = () => {
           };
           {/* console.log(item); */}
           return (
-            <Col className=" mb-5 " key={item.title}>
+            <Col className=" mb-5 " key={item.id}>
               <h4 className="text-center">{item.title}</h4>
               <Box
                 data={{ ...obj }}
