@@ -1,14 +1,12 @@
 import React, { useContext, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link,  } from "react-router-dom";
 import { Card, Container, Button, Spinner } from "react-bootstrap";
 import CartContext from "../../Store/CartCtx/Cart-Context";
-import CreateAuthCtx from "../../Store/AuthCtx/Auth-Context";
 
 const Box = (props) => {
   const crtx = useContext(CartContext);
-  const AuthCtx = useContext(CreateAuthCtx);
   const [disable, setDisable] = useState(false);
-  const email = AuthCtx.userEmail.replace(/[^a-z0-9 -]/gi, "");
+  // const email = AuthCtx.userEmail.replace(/[^a-z0-9 -]/gi, "");
 
   const buttonHandler = () => {
     // console.log(props.data)
