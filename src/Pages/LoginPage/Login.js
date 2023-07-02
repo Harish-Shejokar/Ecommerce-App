@@ -1,6 +1,6 @@
 import React, { useRef, useContext } from "react";
 import classes from "./Login.module.css";
-import { useHistory,NavLink } from "react-router-dom";
+import { useHistory, NavLink } from "react-router-dom";
 import CreateAuth from "../../Store/AuthCtx/Auth-Context";
 
 const Login = () => {
@@ -53,7 +53,7 @@ const Login = () => {
   return (
     <>
       <form className={classes.form}>
-      <h1>Login</h1>
+        <h1>Login</h1>
         <label>Email</label>
         <input
           ref={emailRef}
@@ -63,6 +63,8 @@ const Login = () => {
         />
         <label>Password</label>
         <input ref={passRef} type="password" min="3" />
+        <div className="fw-bolder text-center">email : h@gmail.com</div> 
+        <div className="fw-bolder text-center">pass : abcdef</div>
         <button onClick={formHandler}>LogIn</button>
         {/* <div>
         <strong>Not have an Account</strong>
