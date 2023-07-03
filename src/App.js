@@ -31,7 +31,7 @@ const App = () => {
       <Suspense
         fallback={
           <div>
-            <h1 style={{ textAlign: "center" }}>Loading...</h1>
+            <p className="text-center display-3">Loading...</p>
             {/* <Spinner
               style={{ textAlign: "center" }}
               animation="border"

@@ -32,31 +32,6 @@ const CartProvider = (props) => {
     } catch (error) {
       console.log(error);
     }
-
-    //   const response = await fetch(
-    //     `https://crudcrud.com/api/70e9d428de274e93ac235a54e4ab74f0/${email}`,
-    //     {
-    //       method: "POST",
-    //       body: JSON.stringify({
-    //         cartItems: newCartItems,
-    //       }),
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //       },
-    //     }
-    //   );
-
-    //   if (response.ok) {
-    //     console.log("post ok");
-    //     const data = await response.json();
-
-    //     // console.log(data);
-    //   } else {
-    //     console.log("not ok");
-    //   }
-    // } catch (error) {
-    //   console.log(error);
-    // }
   };
 
   const putCartItemOnCrud = async (newCartItems) => {
@@ -72,76 +47,34 @@ const CartProvider = (props) => {
     } catch (error) {
       console.log(error);
     }
-
-    // try {
-    //   const response = await fetch(
-    //     `https://crudcrud.com/api/70e9d428de274e93ac235a54e4ab74f0/${email}/${localStorage.getItem(
-    //       email
-    //     )}`,
-    //     {
-    //       method: "PUT",
-    //       body: JSON.stringify({
-    //         cartItems: newCartItems,
-    //       }),
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //       },
-    //     }
-    //   );
-
-    //   if (response.ok) {
-    //     console.log("put ok");
-    //     // const data = await response.json();
-    //   } else {
-    //     console.log("put not ok");
-    //   }
-    // } catch (error) {
-    //   console.log(error);
-    // }
   };
 
   const getCartItemsFromFirebase = async () => {
+    // console.log(email);
     try {
       const response = await axios.get(
         `https://ecomm-cart-f90e7-default-rtdb.firebaseio.com/${email}.json`
       );
-      // console.log(putId);
-      const Id = Object.keys(response.data)[0];
-      if(response.data) localStorage.setItem(email,Id)
 
+      const Id = Object.keys(response.data)[0];
+      if (response.data) localStorage.setItem(email, Id);
+      console.log(putId);
       // console.log(Object.keys(response.data)[0])
-      console.log(response.data[putId].cartItems);
-      const data = response.data[putId].cartItems;
+      console.log(response.data[Id].cartItems);
+      const data = response.data[Id].cartItems;
       setCartItem(data);
     } catch (error) {
       console.log(error);
     }
-
-    // try {
-    //   const response = await fetch(
-    //     `https://crudcrud.com/api/70e9d428de274e93ac235a54e4ab74f0/${email}`
-    //   );
-
-    //   if (response.ok) {
-    //     const data = await response.json();
-    //     console.log(data);
-    //     console.log("get ok", data[0].cartItems);
-    //     console.log(data);
-    //     setCartItem(data[0].cartItems);
-    //   } else {
-    //     console.log("put not ok");
-    //   }
-    // } catch (error) {
-    //   console.log(error);
-    // }
   };
 
-  
-
   const addItemToCartHandler = (item) => {
+    if (item === null) {
+      setCartItem([]);
+      return;
+    }
     let newCartItems;
     let flag = false;
-
     setCartItem((Prev) => {
       // if item already present then increase its quantity only
       Prev.map((elem) => {
@@ -155,7 +88,7 @@ const CartProvider = (props) => {
       if (flag) {
         newCartItems = [...Prev];
       } else {
-        newCartItems = [...Prev,item];
+        newCartItems = [...Prev, item];
       }
 
       // console.log(newCartItems);
@@ -186,9 +119,9 @@ const CartProvider = (props) => {
   }, [cartItem]);
 
   useEffect(() => {
-    getCartItemsFromFirebase();
-    
-  },[])
+    console.log(AuthCtx.isLoggedIn);
+    if (AuthCtx.isLoggedIn) getCartItemsFromFirebase();
+  }, []);
 
   const removeItemFromCart = (item) => {
     let majorUpdationInCart = false;
@@ -206,7 +139,7 @@ const CartProvider = (props) => {
           updatedList = [...prevItem];
         }
       });
-      
+
       return [...updatedList];
     });
     putCartItemOnCrud(updatedList);

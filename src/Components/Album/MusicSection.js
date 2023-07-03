@@ -5,7 +5,7 @@ import axios, { all } from "axios";
 import CartContext from "../../Store/CartCtx/Cart-Context";
 
 const MusicSection = () => {
-  // const CartCtx = useContext(CartContext);
+  const CartCtx = useContext(CartContext);
   // const productsArr = [
   //   {
   //     title: "Colors",
@@ -68,9 +68,9 @@ const MusicSection = () => {
     getData();
   }, [allData]);
   
-  // useEffect(() => {
-  //   // CartCtx.getCartItemsFromFirebase();
-  // },[])
+  useEffect(() => {
+    CartCtx.getCartItemsFromFirebase();
+  },[])
 
   return (
     <Container fluid>

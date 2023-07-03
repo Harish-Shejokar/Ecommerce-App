@@ -16,9 +16,11 @@ import Bg from "./Bg";
 import CreateAuthCtx from "../Store/AuthCtx/Auth-Context";
 // import Footer from "../Components/Footer";
 import classes from "./NavBar.module.css";
+import CartContext from "../Store/CartCtx/Cart-Context";
 
 const NavBar = () => {
   const AuthCtx = useContext(CreateAuthCtx);
+  const CartCtx = useContext(CartContext);
   const [store, setIsStore] = useState(false);
   const [isProduct, setIsProduct] = useState(false);
   const history = useHistory();
@@ -38,6 +40,7 @@ const NavBar = () => {
 
   const logoutButton = () => {
     localStorage.clear();
+    CartCtx.addItemToCart(null);
     history.replace("/login");
     AuthCtx.logInOut();
   };
