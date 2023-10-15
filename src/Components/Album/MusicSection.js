@@ -66,7 +66,7 @@ const MusicSection = () => {
 
   useEffect(() => {
     getData();
-  }, [allData]);
+  }, []);
   
   useEffect(() => {
     CartCtx.getCartItemsFromFirebase();
