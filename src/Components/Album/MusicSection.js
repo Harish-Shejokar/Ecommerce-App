@@ -48,12 +48,13 @@ const MusicSection = () => {
   const getData = async () => {
     try {
       const response = await axios.get(
-        `https://api.escuelajs.co/api/v1/products`
+        `https://fakestoreapi.com/products/`
+        // `https://api.escuelajs.co/api/v1/products`
       );
-
       const data = await response.data;
+      console.log(data);
 
-      setData(data.slice(0, 15));
+      setData(data);
       // console.log(allData);
       allData.map((item) => {
         // console.log(item);
@@ -79,7 +80,7 @@ const MusicSection = () => {
           let obj = {
             title: item.title,
             price: item.price,
-            imageUrl: item.images[0],
+            imageUrl: item.image,
             id : item.id,
           };
           {/* console.log(item); */}
@@ -90,8 +91,8 @@ const MusicSection = () => {
                 data={{ ...obj }}
                 title={item.title}
                 price={item.price}
-                url={item.images[0]}
-                images ={item.images}
+                url={item.image}
+                images ={item.image}
               />
               {/* {console.log(item)} */}
             </Col>
