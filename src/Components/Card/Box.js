@@ -30,8 +30,12 @@ const Box = (props) => {
   };
   return (
     <>
-      <Container className="d-flex justify-content-center shadow-sm">
-        <Card style={{ width: "18rem", border: "none" }}>
+      <Container className="d-flex justify-content-center shadow-sm "
+        // style={{ border: "2px solid blue" }}
+      >
+        <Card
+          style={{ width: "15rem", border: "none", height: "25rem" }}
+        >
           <Link
             to={{
               // pathname: `/productDetails/${props.title}`,
@@ -41,6 +45,7 @@ const Box = (props) => {
           >
             <Card.Img
               className="img-zoom-container"
+              style={{maxHeight:"18rem" }}
               variant="top"
               src={props.url}
             />

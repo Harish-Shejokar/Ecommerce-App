@@ -85,8 +85,8 @@ const MusicSection = () => {
           };
           {/* console.log(item); */}
           return (
-            <Col className=" mb-5 " key={item.id}>
-              <h4 className="text-center">{item.title}</h4>
+            <Col className=" mb-5" key={item.id}>
+              <h6 className="text-center my-4">{item.title}</h6>
               <Box
                 data={{ ...obj }}
                 title={item.title}
